@@ -1,0 +1,5 @@
+$schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
+name: credit
+version: 1
+path: data/credit.csv
+description: Dataset pointing to credit data, stored as CSV in this repository. Data is uploaded to default datastore.
