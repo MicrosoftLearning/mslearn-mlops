@@ -28,4 +28,4 @@ jobs:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Create Azure Machine Learning workspace
       run: |
-        az ml workspace create -n "${{ github.event.inputs.aml_workspace }}" -g "${{ github.event.inputs.resource_group }}"
+        az ml workspace create --name "${{ github.event.inputs.aml_workspace }}" -g "${{ github.event.inputs.resource_group }}"

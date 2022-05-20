@@ -32,6 +32,6 @@ jobs:
         az configure --defaults workspace="${{ github.event.inputs.aml_workspace }}"
     - name: Create dataset in Azure ML workspace
       run: |
-        cd infrastructure
-        az ml data create --file data-local-path.yml
+        cd experimentation
+        az ml data create --name diabetes-folder --version 1 --path data
 
