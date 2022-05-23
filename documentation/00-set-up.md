@@ -18,10 +18,10 @@ Follow the instructions below to complete the set-up.
 To create and group resources in Azure, you'll use a resource group. Next, you'll create a service principal in Azure that will have **contributor** access to that resource group. By copying the service principal's output over to GitHub, your repo will have Contributor access to the resource group in Azure.
 
 1. Go to the Azure portal. 
-2. Create a resource group with the name `dev-aml-rg`. 
+2. Create a resource group with the name `rg-dev-mlops`. 
 
 > **Note:**
-> You can choose to use another resource group name. The default is assumed to be `dev-aml-rg`. If you use another name, make sure to change the resource group name whenever necessary.
+> You can choose to use another resource group name. The default is assumed to be `rg-dev-mlops`. If you use another name, make sure to change the resource group name whenever necessary.
 
 3. Open the Cloud Shell in the Azure portal.
 4. Edit the following command and add your subscription id.
