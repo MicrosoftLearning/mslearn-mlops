@@ -16,12 +16,12 @@ By completing this challenge, you'll learn how to:
 
 ## Tasks
 
-In the **experimentation** folder, you'll find a Jupyter notebook which reads a local data file and uses it to train a classification model. 
+In the **experimentation** folder, you'll find a Jupyter notebook which reads a local data file and uses it to train a classification model. In the **src** folder, you'll find a template for a Python script and a YAML file to define a pipeline. 
 
-- Convert the Jupyter notebook to three scripts. 
-- Run the scripts as a **pipeline** in Azure Machine Learning.
+- Convert the Jupyter notebook to at least two scripts. 
+- Run the scripts as a **pipeline** in Azure Machine Learning. Create a YAML file to define the pipeline.
 - Trigger the pipeline using the CLI v2 using the Cloud Shell or a local terminal.
-- Use the registered **dataset** in the Azure Machine Learning workspace as input to the pipeline.
+- Use the registered **data** asset in the Azure Machine Learning workspace as input to the pipeline.
 - Run the pipeline using an Azure Machine Learning **compute instance** (don't forget to stop it when done).
 
 > **Tip:**
@@ -35,8 +35,8 @@ To complete this challenge successfully, you should be able to show:
 
 ## Useful resources
 
-- Learning path on how to use the CLI v2 with Azure Machine Learning.
-- Documentation on refactoring notebooks into scripts.
-- YAML reference for pipelines. 
-- Example pipeline. 
-- CLI reference for pipeline jobs.
+- [Learning path on how to use the CLI v2 with Azure Machine Learning.](https://docs.microsoft.com/learn/paths/train-models-azure-machine-learning-cli-v2/)
+- [Tutorial on refactoring notebooks into scripts.](https://docs.microsoft.com/azure/machine-learning/tutorial-convert-ml-experiment-to-production)
+- [Example pipeline.](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines/nyc-taxi) 
+- [YAML reference for pipelines.](https://docs.microsoft.com/azure/machine-learning/reference-yaml-job-pipeline) 
+- [CLI reference for jobs.](https://docs.microsoft.com/cli/azure/ml/job?view=azure-cli-latest)

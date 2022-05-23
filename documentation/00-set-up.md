@@ -1,6 +1,6 @@
 # Set-up
 
-To work on the exercises, go through the set-up first.
+To work on the challenges, go through the set-up first.
 
 You'll need to create a GitHub repo with the necessary artifacts. Create a new repo by using the template of this repo.
 
@@ -75,3 +75,12 @@ Store any code assets you create in the GitHub repo you manage. Although you'll 
 > Change the default names for the resource group and workspace if you named your assets differently.
 
 Once the workflow has completed successfully, you'll find a new dataset in your Azure Machine Learning workspace. 
+
+## Local debugging
+
+GitHub Actions are ideal for automating workflows. To test the workflow before you automate it, it's recommended to use a local debugging approach. As you'll be working with Azure Machine Learning mostly by using the CLI v2, there are two main ways you can test commands:
+
+- **[Azure Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/overview)**: Browser-based shell for managing Azure resources. 
+- **[Visual Studio Code](https://code.visualstudio.com/download)**: Download for free to manage Azure resources from your local device.
+
+Whether you choose to use the Azure Cloud Shell or Visual Studio code for debugging, make sure to install the Azure Machine Learning extension for CLI v2. To learn more about [how to install the extension and login to Azure](https://docs.microsoft.com/azure/machine-learning/how-to-configure-cli).

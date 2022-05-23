@@ -1,14 +1,3 @@
-Concepts:
-- Branches
-- Triggers
-
-Tasks:
-- Edit train script locally by working in branch
-- Trigger pipeline with pull request event with tag “Release-v.”
-
-Success:
-- Show you can trigger the AML pipeline with pull request
-
 # Trigger GitHub Actions with trunk-based development
 
 Triggering a workflow by pushing directly to the repo is **not** considered a best practice. Preferably, you'll want to review any changes before you build them with GitHub Actions.
@@ -44,6 +33,6 @@ To complete this challenge successfully, you should be able to show:
 
 ## Useful resources
 
-- Learning path covering an introduction of DevOps principles for machine learning.
-- GitHub Actions.
-- GitHub events.
+- [Learning path covering an introduction of DevOps principles for machine learning.](https://docs.microsoft.com/learn/paths/introduction-machine-learn-operations/)
+- [GitHub Actions.](https://docs.github.com/actions/guides)
+- [Triggering a GitHub Actions workflow.](https://docs.github.com/actions/using-workflows/triggering-a-workflow)

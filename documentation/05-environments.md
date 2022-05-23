@@ -1,18 +1,8 @@
-Concepts:
-- Environments
-- Gated approval
+# Work with environments
 
-Tasks:
-- Set up staging and production environment
-- Add jobs for environments (i.e. stages) to GitHub Action
-- Add a required reviewer to the staging job environment
+There are many advantages to using environments in machine learning projects. When you have separate environments for development, staging, and production, you can more easily control access to resources. 
 
-Success:
-- Trigger GitHub Action and show approval of job
-
-# Work with linting and unit testing
-
-Code quality can be assessed in two ways: linting and unit testing. Use linting to check for any stylistic errors and unit testing to verify your functions.
+Use environments to isolate workloads and control the deployment of the model.
 
 ## Prerequisites
 
@@ -30,20 +20,23 @@ By completing this challenge, you'll learn how to:
 
 ## Tasks
 
-In the **tests** folder, you'll find files that will perform linting and unit testing on your code. 
+Though it's a best practice to associate a separate Azure Machine Learning workspace to each environment, you can use one workspace for both the development and production environment for this challenge. 
 
 - Within your GitHub repo, create a development and production environment. 
-- 
+- Create one GitHub Action that trains the model in the development environment.
+- Create a second GitHub Action that creates the model in the production environment.
+- Add a approval check for the production environment. 
 
 ## Success criteria
 
 To complete this challenge successfully, you should be able to show:
 
-- A successfully completed Action in your GitHub repo that includes linting and unit testing. 
+- A successfully completed Action in your GitHub repo that trains the model.
+- A GitHub Action that creates the model in the production environment. Show that the workflow requires an approval before running.
+- A model registered in the Azure Machine Learning workspace.
 
 ## Useful resources
 
-- Learning path covering an introduction of DevOps principles for machine learning.
-- GitHub Actions.
-- Linter.
-- Unit tests.
+- [Learning path covering an introduction of DevOps principles for machine learning.](https://docs.microsoft.com/learn/paths/introduction-machine-learn-operations/)
+- [GitHub Actions.](https://docs.github.com/actions/guides)
+- [Using environments for deployment in GitHub.](https://docs.github.com/actions/deployment/targeting-different-environments/using-environments-for-deployment)

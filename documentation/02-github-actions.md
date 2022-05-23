@@ -29,9 +29,9 @@ To complete this challenge successfully, you should be able to show:
 
 - A successfully completed Action in your GitHub repo, triggered by a push to the repo.
 - A step in the Action should have submitted a pipeline job to the Azure Machine Learning workspace.
-- A successfully completed Azure Machine Learning pipeline.
+- A successfully completed Azure Machine Learning pipeline that used a compute cluster.
 
 ## Useful resources
 
-- Learning path covering an introduction of DevOps principles for machine learning.
-- GitHub Actions.
+- [Learning path covering an introduction of DevOps principles for machine learning.](https://docs.microsoft.com/learn/paths/introduction-machine-learn-operations/)
+- [GitHub Actions.](https://docs.github.com/en/actions/guides)
