@@ -31,7 +31,10 @@ In the **experimentation** folder, you'll find a Jupyter notebook which reads a 
 
 To complete this challenge successfully, you should be able to show:
 
-- A successfully completed pipeline in the Azure Machine Learning workspace. 
+- A successfully completed pipeline in the Azure Machine Learning workspace.
+
+> **Note:**
+> If you've used a compute instance for experimentation, remember to stop the compute instance when you're done. You can use the **Stop compute instance** workflow to stop the compute instance in your Azure Machine Learning workspace with GitHub Actions.
 
 ## Useful resources
 

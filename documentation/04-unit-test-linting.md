@@ -17,27 +17,17 @@ By completing this challenge, you'll learn how to:
 
 ## Tasks
 
-In the **tests** folder, you'll find files that will perform linting and unit testing on your code. 
+In the **tests** folder, you'll find files that will perform linting and unit testing on your code. The `flake8` lints your code to check for stylistic errors. The `test_train.py` performs unit tests on your code to check whether the functions work.
 
-Add the following steps to the GitHub Action to run the linter and unit tests:
-
-```yml
-```
-
-After running a workflow with the linter and unit tests for the first time, you're likely to get errors.
-
-- Fix your code according to the linter rules.
-- Troubleshoot any errors to ensure the unit tests run successfully.
+- Go to the **Actions** tab in your GitHub repo and trigger the **Linting** workflow manually. Inspect the output and fix your code where necessary.
+- Go to the **Actions** tab in your GitHub repo and trigger the **Unit testing** workflow manually. Inspect the output and fix your code where necessary.
 
 ## Success criteria
 
 To complete this challenge successfully, you should be able to show:
 
-- A successfully completed Action in your GitHub repo that includes linting and unit testing. 
+- Both the **Linting** and **Unit testing** workflows are completed successfully.
 
 ## Useful resources
 
-- Learning path covering an introduction of DevOps principles for machine learning.
-- GitHub Actions.
-- Linter.
-- Unit tests.
+- [Learning path covering an introduction of DevOps principles for machine learning.](https://docs.microsoft.com/learn/paths/introduction-machine-learn-operations/)

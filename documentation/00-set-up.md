@@ -39,7 +39,11 @@ az ad sp create-for-rbac --name "github-aml-sp" --role contributor \
 
 To allow GitHub to create resources in the resource group in Azure, you'll create a GitHub secret that stores the information of the service principal.
 
-1. Fork this repo. 
+1. Create a new **public** repo by using this repo as a template.
+
+> **Note**:
+> Set the repo to public. If the repo is private, you'll not be able to create environments unless your organization uses GitHub Enterpise Cloud.
+
 2. Go to your new GitHub repo and navigate to the **Settings** tab.
 3. Under **Security**, select **Secrets > Actions**. 
 4. Create a **new repository secret**.
@@ -62,7 +66,7 @@ To train, manage, and monitor models, you'll use an Azure Machine Learning works
 
 You'll get an email when the run has completed. If successful, the workflow will have created a new Azure Machine Learning workspace in your resource group. You can view the workspace (and related resources) in the Azure portal.
 
-## Create a dataset in your Azure Machine Learning workspace
+## Create a data asset in your Azure Machine Learning workspace
 
 Store any code assets you create in the GitHub repo you manage. Although you'll find a CSV dataset in this repo, it's recommended to store your data in a cloud data store. Go through the following steps to copy the data over to the default data store of the Azure Machine Learning workspace. A **dataset** in the workspace will be created to store the connection information to the CSV stored in the Azure Blob Storage Account associated with your Azure Machine Learning workspace.
 

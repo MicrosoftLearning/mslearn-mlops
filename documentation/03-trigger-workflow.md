@@ -29,7 +29,7 @@ Use trunk-based development to better govern changes made to the repo and the tr
 To complete this challenge successfully, you should be able to show:
 
 - A successfully completed Action in your GitHub repo. 
-- An event in the GitHub Action that ensures the workflow is triggered by a merged pull request with the tag “Release”.
+- An event in the GitHub Action that ensures the workflow is triggered by a merged pull request.
 
 ## Useful resources
 

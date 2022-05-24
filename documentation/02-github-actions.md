@@ -19,15 +19,18 @@ By completing this challenge, you'll learn how to:
 
 In the **.github/workflows** folder, you'll find two GitHub Actions that were used in set-up to create and manage the Azure Machine Learning workspace.
 
-- Create a third workflow in the **.github/workflows** that triggers the Azure Machine Learning pipeline.
-- The workflow should be triggered by a **push** to the repository.
+- Create a new workflow in the **.github/workflows** that triggers the Azure Machine Learning pipeline.
+- You should be able to trigger the workflow manually.
 - The Azure Machine Learning pipeline should use a **compute cluster**. 
+
+> **Tip:**
+> GitHub is authenticated to use your Azure Machine Learning workspace with a service principal. The service principal is only allowed to submit jobs that use a compute cluster, not a compute instance.
 
 ## Success criteria
 
 To complete this challenge successfully, you should be able to show:
 
-- A successfully completed Action in your GitHub repo, triggered by a push to the repo.
+- A successfully completed Action in your GitHub repo, triggered manually in GitHub.
 - A step in the Action should have submitted a pipeline job to the Azure Machine Learning workspace.
 - A successfully completed Azure Machine Learning pipeline that used a compute cluster.
 
