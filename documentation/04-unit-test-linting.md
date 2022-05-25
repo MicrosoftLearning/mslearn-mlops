@@ -26,7 +26,7 @@ In the **tests** folder, you'll find files that will perform linting and unit te
 
 To complete this challenge successfully, you should be able to show:
 
-- Both the **Linting** and **Unit testing** workflows are completed successfully.
+- Both the **Linting** and **Unit testing** workflows are completed successfully without any errors.
 
 ## Useful resources
 

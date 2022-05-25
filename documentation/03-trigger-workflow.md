@@ -13,21 +13,27 @@ You'll also need the GitHub Action that triggers the Azure Machine Learning pipe
 By completing this challenge, you'll learn how to:
 
 - Work with trunk-based development.
-- Trigger the Azure Machine Learning pipeline with a pull request event.
+- Protect the main branch.
+- Trigger the Azure Machine Learning pipeline by merging a pull request.
 
 ## Tasks
 
 Use trunk-based development to better govern changes made to the repo and the triggering of GitHub Actions.
 
+- Create a **branch protection rule** to block any direct pushes to the **main** branch.
 - Create a branch in the repo.
 - Make a change and push it. For example, change the hyperparameter value. 
 - Create a pull request. 
-- Trigger the GitHub Action that submits the Azure Machine Learning pipeline by merging the pull request.
+- Trigger the GitHub Actions workflow that submits the Azure Machine Learning pipeline by merging the pull request.
+
+> **Tip:**
+> To trigger the workflow, you have to use an event that pushes changes to the main branch. Don't use the pull request event because then the workflow is triggered by the creation of the pull request, not by the merge.
 
 ## Success criteria
 
 To complete this challenge successfully, you should be able to show:
 
+- The branch protection rule for the main branch.
 - A successfully completed Action in your GitHub repo. 
 - An event in the GitHub Action that ensures the workflow is triggered by a merged pull request.
 

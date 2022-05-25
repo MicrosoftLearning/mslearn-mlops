@@ -23,15 +23,24 @@ By completing this challenge, you'll learn how to:
 Though it's a best practice to associate a separate Azure Machine Learning workspace to each environment, you can use one workspace for both the development and production environment for this challenge. 
 
 - Within your GitHub repo, create a development and production environment.
+- For each environment, add the **AZURE_CREDENTIALS** secret that contains the service principal output. 
+
+> **Tip:**
+> If you don't have the service principal output anymore from the [set-up](00-set-up.md), go back to the Azure portal and create it again.
+
+- Remove the global repo **AZURE_CREDENTIALS** secret, so that each environment can only use its own secret.
 - Add an approval check for the production environment.  
-- Create one GitHub Actions workflow that trains the model in the development environment and downloads the last job's output in the production environment.
+- Create one GitHub Actions workflow with two jobs:
+    - The **Train** job that trains the model in the **development environment**. 
+    - The **Deploy** job that lists the models in the **production environment**.
 
 ## Success criteria
 
 To complete this challenge successfully, you should be able to show:
 
-- A successfully completed Actions workflow in your GitHub repo that trains the model and downloads the job's output.
+- A successfully completed Actions workflow in your GitHub repo that trains the model and lists the models in the workspace.
 - Show that the workflow required an approval before running the production workload.
+- Show the environment secrets in the settings.
 
 ## Useful resources
 
