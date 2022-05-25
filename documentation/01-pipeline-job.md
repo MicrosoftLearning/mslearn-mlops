@@ -16,22 +16,18 @@ By completing this challenge, you'll learn how to:
 
 ## Tasks
 
-In the **experimentation** folder, you'll find a Jupyter notebook which reads a local data file and uses it to train a classification model. In the **src** folder, you'll find a template for a Python script and a YAML file to define a pipeline. 
+In the **src/model** folder, you'll find a Python script which reads CSV files from a datastore and uses the data to train a classification model. In the **src** folder, you'll find a YAML file to define a job. There are values missing in the YAML file. It's up to you to complete it. 
 
-- Convert the Jupyter notebook to at least two scripts. 
-- Run the scripts as a **pipeline** in Azure Machine Learning. Create a YAML file to define the pipeline.
-- Trigger the pipeline using the CLI v2 using the Cloud Shell or a local terminal.
+- Run the script as a **job** in Azure Machine Learning. Complete the YAML file to define the job.
+- Trigger the job using the CLI v2 using the Cloud Shell or a local terminal.
 - Use the registered **data** asset in the Azure Machine Learning workspace as input to the pipeline.
-- Run the pipeline using an Azure Machine Learning **compute instance** (don't forget to stop it when done).
-
-> **Tip:**
-> Run each script as an individual job to test the script and its inputs and outputs.
+- Run the pipeline using an Azure Machine Learning **compute instance** (don't forget to stop it when done, there's a workflow to help you).
 
 ## Success criteria
 
 To complete this challenge successfully, you should be able to show:
 
-- A successfully completed pipeline in the Azure Machine Learning workspace.
+- A successfully completed job in the Azure Machine Learning workspace.
 
 > **Note:**
 > If you've used a compute instance for experimentation, remember to stop the compute instance when you're done. You can use the **Stop compute instance** workflow to stop the compute instance in your Azure Machine Learning workspace with GitHub Actions.
@@ -39,7 +35,6 @@ To complete this challenge successfully, you should be able to show:
 ## Useful resources
 
 - [Learning path on how to use the CLI v2 with Azure Machine Learning.](https://docs.microsoft.com/learn/paths/train-models-azure-machine-learning-cli-v2/)
-- [Tutorial on refactoring notebooks into scripts.](https://docs.microsoft.com/azure/machine-learning/tutorial-convert-ml-experiment-to-production)
-- [Example pipeline.](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/pipelines/nyc-taxi) 
-- [YAML reference for pipelines.](https://docs.microsoft.com/azure/machine-learning/reference-yaml-job-pipeline) 
+- [Example jobs.](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/basics) 
+- [YAML reference for command jobs.](https://docs.microsoft.com/azure/machine-learning/reference-yaml-job-command) 
 - [CLI reference for jobs.](https://docs.microsoft.com/cli/azure/ml/job?view=azure-cli-latest)
