@@ -22,7 +22,7 @@ When you work with environments, you can isolate projects and tasks within a pro
 
 - Within your GitHub repo, create a development and production environment. 
 - Create one GitHub Action that trains the model in the development environment.
-- Create a second GitHub Action that creates the model in the production environment.
+- Create a second GitHub Action that creates and deploys the model in the production environment.
 - Add a approval check for the production environment. 
 
 ## Success criteria
