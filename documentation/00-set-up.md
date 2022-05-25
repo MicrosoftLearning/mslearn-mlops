@@ -28,7 +28,7 @@ To create and group resources in Azure, you'll use a resource group. Next, you'l
 
 ```
 az ad sp create-for-rbac --name "github-aml-sp" --role contributor \
-                            --scopes /subscriptions/<subscription-id>/resourceGroups/dev-aml-rg \
+                            --scopes /subscriptions/<subscription-id>/resourceGroups/rg-dev-mlops \
                             --sdk-auth
 ```
 
