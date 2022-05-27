@@ -23,6 +23,9 @@ In the **src/model** folder, you'll find a Python script which reads CSV files f
 - Use the registered **data** asset in the Azure Machine Learning workspace as input to the pipeline.
 - Run the pipeline using an Azure Machine Learning **compute instance** (don't forget to stop it when done, there's a workflow to help you).
 
+> **Tip:**
+> Whether you're working from the Cloud Shell or a local terminal, make sure to update the Azure Machine Learning extension for the CLI to the latest version.
+
 ## Success criteria
 
 To complete this challenge successfully, you should be able to show:
