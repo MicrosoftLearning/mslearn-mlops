@@ -1,6 +1,6 @@
-# Create an Azure Machine Learning pipeline
+# Create an Azure Machine Learning job
 
-The first step to automate machine learning workflows is to create a workflow of the machine learning workloads. A workflow grouping machine learning tasks in Azure Machine Learning is referred to as a pipeline.
+The first step to automate machine learning workflows is to create a workflow of the machine learning workloads. To execute any workflow consisting of Python scripts, use Azure Machine Learning jobs.
 
 ## Prerequisites
 
@@ -11,8 +11,8 @@ If you haven't, complete the [set-up](00-set-up.md) before you continue.
 By completing this challenge, you'll learn how to:
 
 - Convert a notebook into multiple scripts.
-- Define an Azure Machine Learning pipeline job in YAML.
-- Run an Azure Machine Learning pipeline job with the CLI v2.
+- Define an Azure Machine Learning job in YAML.
+- Run an Azure Machine Learning job with the CLI v2.
 
 ## Tasks
 
@@ -20,8 +20,8 @@ In the **src/model** folder, you'll find a Python script which reads CSV files f
 
 - Run the script as a **job** in Azure Machine Learning. Complete the YAML file to define the job.
 - Trigger the job using the CLI v2 using the Cloud Shell or a local terminal.
-- Use the registered **data** asset in the Azure Machine Learning workspace as input to the pipeline.
-- Run the pipeline using an Azure Machine Learning **compute instance** (don't forget to stop it when done, there's a workflow to help you).
+- Use the registered **data** asset in the Azure Machine Learning workspace as input to the job.
+- Run the job using an Azure Machine Learning **compute instance** (don't forget to stop it when done, there's a workflow to help you).
 
 > **Tip:**
 > Whether you're working from the Cloud Shell or a local terminal, make sure to update the Azure Machine Learning extension for the CLI to the latest version.
