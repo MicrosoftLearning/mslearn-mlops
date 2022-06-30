@@ -1,3 +1,9 @@
+---
+challenge:
+    module: 'Work with linting and unit testing in GitHub Actions'
+    challenge: '4: Work with linting and unit testing'
+---
+
 # Work with linting and unit testing
 
 Code quality can be assessed in two ways: linting and unit testing. Use linting to check for any stylistic errors and unit testing to verify your functions.

@@ -1,7 +1,7 @@
 ---
 challenge:
-    module: Trigger Azure Machine Learning jobs with GitHub Actions
-    challenge: '2: Trigger GitHub Actions with trunk-based development'
+    module: 'Trigger GitHub Actions with trunk-based development'
+    challenge: '3: Trigger GitHub Actions with trunk-based development'
 ---
 
 # Trigger GitHub Actions with trunk-based development

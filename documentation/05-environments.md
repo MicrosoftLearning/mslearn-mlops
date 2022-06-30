@@ -1,3 +1,9 @@
+---
+challenge:
+    module: 'Work with environments in GitHub Actions'
+    challenge: '5: Work with environments'
+---
+
 # Work with environments
 
 There are many advantages to using environments in machine learning projects. When you have separate environments for development, staging, and production, you can more easily control access to resources. 

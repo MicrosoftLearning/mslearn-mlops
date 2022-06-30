@@ -1,3 +1,10 @@
+---
+challenge:
+    module: 'Deploy a model with GitHub Actions'
+    challenge: '6: Deploy and test the model'
+---
+
+
 # Deploy and test the model
 
 To get value from a model, you'll want to deploy it. You can deploy a model to a managed online or batch endpoint.
