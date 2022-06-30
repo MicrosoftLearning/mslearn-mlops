@@ -1,3 +1,9 @@
+---
+challenge:
+    module: 'Set-up'
+    challenge: '0: Set-up'
+---
+
 # Set-up
 
 To work on the challenges, go through the set-up first.
