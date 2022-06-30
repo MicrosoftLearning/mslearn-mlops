@@ -1,3 +1,9 @@
+---
+challenge:
+    module: Use an Azure Machine Learning job for automation
+    challenge: '1: Create an Azure Machine Learning job'
+---
+
 # Create an Azure Machine Learning job
 
 The first step to automate machine learning workflows is to create a workflow of the machine learning workloads. To execute any workflow consisting of Python scripts, use Azure Machine Learning jobs.
