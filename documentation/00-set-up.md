@@ -1,7 +1,7 @@
 ---
 challenge:
     module: 
-    challenge: '0: Set-up'
+    challenge: 'Set-up'
 ---
 
 # Set-up
