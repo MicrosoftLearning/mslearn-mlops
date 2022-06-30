@@ -1,3 +1,9 @@
+---
+challenge:
+    module: Trigger Azure Machine Learning jobs with GitHub Actions
+    challenge: '2: Trigger GitHub Actions with trunk-based development'
+---
+
 # Trigger GitHub Actions with trunk-based development
 
 Triggering a workflow by pushing directly to the repo is **not** considered a best practice. Preferably, you'll want to review any changes before you build them with GitHub Actions.
