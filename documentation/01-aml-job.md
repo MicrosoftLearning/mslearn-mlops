@@ -4,7 +4,9 @@ challenge:
     challenge: '1: Create an Azure Machine Learning job'
 ---
 
-# Create an Azure Machine Learning job
+# Challenge: Create an Azure Machine Learning job
+
+## Challenge scenario
 
 The first step to automate machine learning workflows is to create a workflow of the machine learning workloads. To execute any workflow consisting of Python scripts, use Azure Machine Learning jobs.
 
@@ -12,15 +14,19 @@ The first step to automate machine learning workflows is to create a workflow of
 
 If you haven't, complete the [set-up](00-set-up.md) before you continue.
 
-## Learning objectives
+## Objectives
 
 By completing this challenge, you'll learn how to:
 
-- Convert a notebook into multiple scripts.
+- Convert a notebook into scripts.
 - Define an Azure Machine Learning job in YAML.
 - Run an Azure Machine Learning job with the CLI v2.
 
-## Tasks
+## Challenge Duration
+
+- **Estimated Time**: 30 minutes
+
+## Instructions
 
 In the **src/model** folder, you'll find a Python script which reads CSV files from a datastore and uses the data to train a classification model. In the **src** folder, you'll find a YAML file to define a job. There are values missing in the YAML file. It's up to you to complete it. 
 

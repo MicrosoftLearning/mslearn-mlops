@@ -5,7 +5,9 @@ challenge:
 ---
 
 
-# Trigger the Azure Machine Learning job with GitHub Actions
+# Challange: Trigger the Azure Machine Learning job with GitHub Actions
+
+## Challenge scenario
 
 The benefit of using the CLI v2 to run an Azure Machine Learning job, is that you can submit the job from anywhere. To trigger the job to run, you can use GitHub Actions.
 
@@ -15,14 +17,18 @@ If you haven't, complete the [set-up](00-set-up.md) before you continue.
 
 You'll also need the Azure Machine Learning job created in Challenge 1. 
 
-## Learning objectives
+## Objectives
 
 By completing this challenge, you'll learn how to:
 
 - Run the Azure Machine Learning job with GitHub Actions.
 - Trigger the job with a change to the repo.
 
-## Tasks
+## Challenge Duration
+
+- **Estimated Time**: 30 minutes
+
+## Instructions
 
 In the **.github/workflows** folder, you'll find two GitHub Actions that were used in set-up to create and manage the Azure Machine Learning workspace.
 

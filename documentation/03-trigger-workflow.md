@@ -4,7 +4,9 @@ challenge:
     challenge: '3: Trigger GitHub Actions with trunk-based development'
 ---
 
-# Trigger GitHub Actions with trunk-based development
+# Challenge: Trigger GitHub Actions with trunk-based development
+
+## Challenge scenario
 
 Triggering a workflow by pushing directly to the repo is **not** considered a best practice. Preferably, you'll want to review any changes before you build them with GitHub Actions.
 
@@ -12,17 +14,21 @@ Triggering a workflow by pushing directly to the repo is **not** considered a be
 
 If you haven't, complete the [set-up](00-set-up.md) before you continue.
 
-You'll also need the GitHub Action that triggers the Azure Machine Learning pipeline created in Challenge 2. 
+You'll also need the GitHub Action that triggers the Azure Machine Learning job created in Challenge 2. 
 
-## Learning objectives
+## Objectives
 
 By completing this challenge, you'll learn how to:
 
 - Work with trunk-based development.
 - Protect the main branch.
-- Trigger the Azure Machine Learning pipeline by merging a pull request.
+- Trigger the Azure Machine Learning job by merging a pull request.
 
-## Tasks
+## Challenge Duration
+
+- **Estimated Time**: 45 minutes
+
+## Instructions
 
 Use trunk-based development to better govern changes made to the repo and the triggering of GitHub Actions.
 
@@ -30,7 +36,7 @@ Use trunk-based development to better govern changes made to the repo and the tr
 - Create a branch in the repo.
 - Make a change and push it. For example, change the hyperparameter value. 
 - Create a pull request. 
-- Trigger the GitHub Actions workflow that submits the Azure Machine Learning pipeline by merging the pull request.
+- Trigger the GitHub Actions workflow that submits the Azure Machine Learning job by merging the pull request.
 
 > **Tip:**
 > To trigger the workflow, you have to use an event that pushes changes to the main branch. Don't use the pull request event because then the workflow is triggered by the creation of the pull request, not by the merge.

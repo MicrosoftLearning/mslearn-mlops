@@ -4,7 +4,9 @@ challenge:
     challenge: '5: Work with environments'
 ---
 
-# Work with environments
+# Challenge: Work with environments
+
+## Challenge scenario
 
 There are many advantages to using environments in machine learning projects. When you have separate environments for development, staging, and production, you can more easily control access to resources. 
 
@@ -16,15 +18,19 @@ If you haven't, complete the [set-up](00-set-up.md) before you continue. **Your 
 
 You'll also need the GitHub Action that triggers the Azure Machine Learning pipeline created in Challenge 3. 
 
-## Learning objectives
+## Objectives
 
 By completing this challenge, you'll learn how to:
 
 - Set up a development and production environment.
-- Add environments to GitHub Action.
-- Add a required reviewer to the staging job environment.
+- Add a required reviewer to the development job environment.
+- Add environments to a GitHub Actions workflow.
 
-## Tasks
+## Challenge Duration
+
+- **Estimated Time**: 45 minutes
+
+## Instructions
 
 Though it's a best practice to associate a separate Azure Machine Learning workspace to each environment, you can use one workspace for both the development and production environment for this challenge. 
 
