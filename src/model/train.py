@@ -2,6 +2,7 @@
 import mlflow
 import argparse
 import glob
+import os
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -14,15 +15,22 @@ def main(args):
     mlflow.autolog()
 
     # read data
-    data_path = args.training_data
-    all_files = glob.glob(data_path + "/*.csv")
-    df = pd.concat((pd.read_csv(f) for f in all_files), sort=False)
+    df = get_csvs_df(args.training_data)
 
     # process data
     X_train, X_test, y_train, y_test = process_data(df)
 
     # train model
     model = train_model(args.reg_rate, X_train, X_test, y_train, y_test)
+
+
+def get_csvs_df(path):
+    if not os.path.exists(path):
+        raise RuntimeError(f"Cannot use non-existent path provided: {path}")
+    csv_files = glob.glob(f"{path}/*.csv")
+    if not csv_files:
+        raise RuntimeError(f"No CSV files found in provided data path: {path}")
+    return pd.concat((pd.read_csv(f) for f in csv_files), sort=False)
 
 
 def process_data(df):
