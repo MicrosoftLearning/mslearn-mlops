@@ -44,7 +44,7 @@ In the **.github/workflows** folder, you'll find two GitHub Actions that were us
 To complete this challenge successfully, you should be able to show:
 
 - A successfully completed Action in your GitHub repo, triggered manually in GitHub.
-- A step in the Action should have submitted a job job to the Azure Machine Learning workspace.
+- A step in the Action should have submitted a job to the Azure Machine Learning workspace.
 - A successfully completed Azure Machine Learning job that used a compute cluster.
 
 ## Useful resources
