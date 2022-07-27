@@ -39,7 +39,7 @@ Use trunk-based development to better govern changes made to the repo and the tr
 - Trigger a GitHub Actions workflow by creating a pull request.
 
 > **Tip:**
-> To trigger the workflow, you have to use an event that pushes changes to the main branch. Don't use the pull request event because then the workflow is triggered by the creation of the pull request, not by the merge.
+> The workflow will be used for code verification in challenge 4. It doesn't matter for now what it does. Include any step you want to show it works.
 
 ## Success criteria
 
