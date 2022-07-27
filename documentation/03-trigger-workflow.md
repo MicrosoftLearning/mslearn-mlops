@@ -32,14 +32,12 @@ By completing this challenge, you'll learn how to:
 
 Use trunk-based development to better govern changes made to the repo and the triggering of GitHub Actions.
 
+- Create a GitHub Actions workflow which is triggered by a pull request. The workflow will be used for code verification in challenge 4. For now, you can include whatever step you want. For example, list the workspace.
 - Create a **branch protection rule** to block any direct pushes to the **main** branch.
 - Create a branch in the repo.
 - Make a change and push it. For example, change the hyperparameter value. 
 - Create a pull request. 
 - Trigger a GitHub Actions workflow by creating a pull request.
-
-> **Tip:**
-> The workflow will be used for code verification in challenge 4. It doesn't matter for now what it does. Include any step you want to show it works.
 
 ## Success criteria
 
