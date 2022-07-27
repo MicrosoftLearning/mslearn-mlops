@@ -16,7 +16,7 @@ on:
       compute:
         description: 'Azure Machine Learning compute instance name'
         required: true
-        default: 'dev-vm-1' 
+        default: 'dev-vm' 
         type: string
 
 jobs:
