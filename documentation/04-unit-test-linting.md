@@ -35,7 +35,7 @@ In the **tests** folder, you'll find files that will perform linting and unit te
 
 > You'll get an F841 warning describing that the variable model is never used. You can ignore this warning as MLflow logs the model, which is later necessary for model deployment.
 
-- Go to the **Actions** tab in your GitHub repo and trigger the **Unit testing** workflow manually. Inspect the output and fix your code where necessary.
+- Optionally, create a workflow to manually trigger **unit testing** with Pytest. 
 
 - Create a GitHub Actions workflow that runs linting and unit testing, triggered by a pull request.
 - Create a **branch protection rule** to require code checks to be successful before mering a pull request to the **main** branch.
