@@ -5,7 +5,7 @@ challenge:
 ---
 
 
-# Challange: Trigger the Azure Machine Learning job with GitHub Actions
+# Challenge: Trigger the Azure Machine Learning job with GitHub Actions
 
 ## Challenge scenario
 
