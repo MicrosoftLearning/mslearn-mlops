@@ -30,9 +30,9 @@ By completing this challenge, you'll learn how to:
 In the **src/model** folder, you'll find a Python script which reads CSV files from a datastore and uses the data to train a classification model. In the **src** folder, you'll find a YAML file to define a job. There are values missing in the YAML file. It's up to you to complete it. 
 
 - Run the script as a **job** in Azure Machine Learning. Complete the YAML file to define the job.
-- Trigger the job using the CLI v2 using the Cloud Shell or a local terminal.
 - Use the registered **data** asset in the Azure Machine Learning workspace as input to the job.
 - Run the job using an Azure Machine Learning **compute instance** (don't forget to stop it when done, there's a workflow to help you).
+- Trigger the job using the CLI v2 using the Cloud Shell or a local terminal.
 
 > **Tip:**
 > Whether you're working from the Cloud Shell or a local terminal, make sure to update the Azure Machine Learning extension for the CLI to the latest version.
