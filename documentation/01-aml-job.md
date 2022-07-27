@@ -18,7 +18,6 @@ If you haven't, complete the [set-up](00-set-up.md) before you continue.
 
 By completing this challenge, you'll learn how to:
 
-- Convert a notebook into scripts.
 - Define an Azure Machine Learning job in YAML.
 - Run an Azure Machine Learning job with the CLI v2.
 
