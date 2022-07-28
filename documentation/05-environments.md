@@ -16,7 +16,7 @@ Use environments to isolate workloads and control the deployment of the model.
 
 If you haven't, complete the [set-up](00-set-up.md) before you continue. **Your repo should be set to public**. If you're using a private repo without GitHub Enterprise Cloud, you'll not be able to create environments. [Change the visibility of your repo to public](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility) if your repo is set to private.
 
-You'll also need the GitHub Action that triggers the Azure Machine Learning pipeline created in Challenge 3. 
+You'll also need the GitHub Action that triggers the Azure Machine Learning job created in Challenge 3. 
 
 ## Objectives
 
@@ -38,13 +38,15 @@ Though it's a best practice to associate a separate Azure Machine Learning works
 - For each environment, add the **AZURE_CREDENTIALS** secret that contains the service principal output. 
 
 > **Tip:**
-> If you don't have the service principal output anymore from the [set-up](00-set-up.md), go back to the Azure portal and create it again.
+> If you don't have the service principal output anymore from the [set-up](00-set-up.md), go back to the Azure portal and create it again. You can only get the necessary output at the time of creation.
 
 - Remove the global repo **AZURE_CREDENTIALS** secret, so that each environment can only use its own secret.
 - Add an approval check for the production environment.  
 - Create one GitHub Actions workflow with two jobs:
-    - The **Train** job that trains the model in the **development environment**. 
-    - The **Deploy** job that lists the models in the **production environment**.
+    - The **Train** job that trains and registers the model in the **development environment**. 
+    - The **Deploy** job that lists the registered models in the **production environment**.
+
+> **Note:** You'll use the deploy job in challenge 6 to deploy the model. For now, just listing the registered models from the workspace is sufficient.
 
 ## Success criteria
 

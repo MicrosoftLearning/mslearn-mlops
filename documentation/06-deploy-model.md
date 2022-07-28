@@ -14,7 +14,7 @@ To get value from a model, you'll want to deploy it. You can deploy a model to a
 
 If you haven't, complete the [set-up](00-set-up.md) before you continue.
 
-You'll also need the GitHub Action that triggers the Azure Machine Learning pipeline created in Challenge 3. 
+You'll also need the GitHub Action that triggers the Azure Machine Learning job to train a model in a development environment created in Challenge 5. 
 
 ## Objectives
 
@@ -30,9 +30,13 @@ By completing this challenge, you'll learn how to:
 
 ## Instructions
 
-When a model is trained and logged by using MLflow, you can easily deploy the model with Azure Machine Learning. You
+When a model is trained and logged by using MLflow, you can easily deploy the model with Azure Machine Learning. After training the model, you want to deploy the model to a real-time endpoint so that it can be consumed by a web app.
 
-- Register the model, create an endpoint and deploy your model to the endpoint using the CLI (v2) in a GitHub Actions workflow.
+- After training the model, automatically register the model, create an endpoint and deploy your model to the endpoint using the CLI (v2) in a GitHub Actions workflow.
+
+> **Tip:** 
+> Use the workflow from challenge 5 and add the model deployment to the production job.
+
 - Test whether the deployed model returns predictions as expected.
 
 ## Success criteria

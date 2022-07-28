@@ -14,7 +14,7 @@ Code quality can be assessed in two ways: linting and unit testing. Use linting 
 
 If you haven't, complete the [set-up](00-set-up.md) before you continue.
 
-You'll also need the GitHub Action that triggers the Azure Machine Learning pipeline created in Challenge 3. 
+You'll also need the GitHub Action that triggers the Azure Machine Learning job created in Challenge 3. 
 
 ## Objectives
 
@@ -38,7 +38,7 @@ In the **tests** folder, you'll find files that will perform linting and unit te
 - Optionally, create a workflow to manually trigger **unit testing** with Pytest. 
 
 - Create a GitHub Actions workflow that runs linting and unit testing, triggered by a pull request.
-- Create a **branch protection rule** to require code checks to be successful before mering a pull request to the **main** branch.
+- Create a **branch protection rule** to require code checks to be successful before merging a pull request to the **main** branch.
 - Make a change and push it. For example, change the hyperparameter value. 
 - Create a pull request, showing the integrated code checks.
 
