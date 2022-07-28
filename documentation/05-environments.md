@@ -23,7 +23,7 @@ You'll also need the GitHub Action that triggers the Azure Machine Learning job 
 By completing this challenge, you'll learn how to:
 
 - Set up a development and production environment.
-- Add a required reviewer to the development job environment.
+- Add a required reviewer.
 - Add environments to a GitHub Actions workflow.
 
 ## Challenge Duration
