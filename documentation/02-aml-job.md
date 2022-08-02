@@ -37,7 +37,7 @@ In the **src/model** folder, you'll find a Python script which reads CSV files f
 <details>
 <summary>Hint</summary>
 <br/>
-Using the CLI (v2) you can create a data asset by defining the [configuration in a YAML file](https://docs.microsoft.com/azure/machine-learning/reference-yaml-data) **or** by specifying the configuration in the [CLI command](https://docs.microsoft.com/cli/azure/ml/data?view=azure-cli-latest).
+Using the CLI (v2) you can create a data asset by defining the <a href="https://docs.microsoft.com/azure/machine-learning/reference-yaml-data">configuration in a YAML file</a> <b>or</b> by specifying the configuration in the <a href="https://docs.microsoft.com/cli/azure/ml/data?view=azure-cli-latest">CLI command</a>.
 </details>
  
 - Complete the `job.yml` file to define the Azure Machine Learning job to run the `train.py` script.

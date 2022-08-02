@@ -45,7 +45,7 @@ In the **src/model** folder you'll find a **train.py** script which already has 
 <details>
 <summary>Hint</summary>
 <br/>
-The split_data function is already included in the main function. You only need to add the function itself with the required inputs and outputs underneath the comment **TO DO: add function to split data**. 
+The split_data function is already included in the main function. You only need to add the function itself with the required inputs and outputs underneath the comment <b>TO DO: add function to split data</b>. 
 </details>
 
 - Add logging so that every time you run the script, all parameters and metrics are tracked. Use the autologging feature of MLflow to also ensure the necessary model files are stored with the job run to easily deploy the model in the future.
@@ -53,7 +53,7 @@ The split_data function is already included in the main function. You only need 
 <details>
 <summary>Hint</summary>
 <br/>
-MLflow is an open source library for tracking and managing machine learning models. You can use it to track custom metrics. However, since the current model is trained with the common Scikit-learn library, you can also use autologging. By enabling autologging, using `mlflow.autolog()` all parameters, metrics, and model files will automatically be stored with your job run. Enable autologging in the main function under **TO DO: enable autologging**.
+MLflow is an open source library for tracking and managing machine learning models. You can use it to track custom metrics. However, since the current model is trained with the common Scikit-learn library, you can also use autologging. By enabling autologging, using `mlflow.autolog()` all parameters, metrics, and model files will automatically be stored with your job run. Enable autologging in the main function under <b>TO DO: enable autologging</b>.
 </details>
 
 ## Success criteria
