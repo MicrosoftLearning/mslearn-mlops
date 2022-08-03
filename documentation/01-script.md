@@ -10,6 +10,7 @@ challenge:
   color: white;
   padding: 12px 28px;
   background-color: #008CBA;
+  float: right;
 }
 </style>
 
