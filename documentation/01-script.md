@@ -13,16 +13,13 @@ challenge:
 }
 </style>
 
-<button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
-
-
 # Challenge 1: Convert a notebook to production code
+
+<button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
 ## Challenge scenario
 
 The first step to automate machine learning workflows is to convert a Jupyter notebook to production-ready code. When you store your code as scripts, it's easier to automate the code execution. You can parameterize scripts to easily reuse the code for retraining.
-
-
 
 ## Prerequisites
 
