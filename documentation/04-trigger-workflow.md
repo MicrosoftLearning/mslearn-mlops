@@ -1,7 +1,7 @@
 ---
 challenge:
     module: 'Trigger GitHub Actions with trunk-based development'
-    challenge: '3: Trigger GitHub Actions with trunk-based development'
+    challenge: '4: Trigger GitHub Actions with trunk-based development'
 ---
 
 # Challenge: Trigger GitHub Actions with trunk-based development

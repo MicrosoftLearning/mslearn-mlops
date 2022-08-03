@@ -8,7 +8,9 @@ challenge:
 
 ## Challenge scenario
 
-The first step to automate machine learning workflows is to convert a Jupyter notebook to production-ready code. When you store your code as scripts, it's easier to automate the code execution. You can parameterize scripts to easily reuse the code for retraining. 
+The first step to automate machine learning workflows is to convert a Jupyter notebook to production-ready code. When you store your code as scripts, it's easier to automate the code execution. You can parameterize scripts to easily reuse the code for retraining.
+
+<button onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to challenges overview</button>
 
 ## Prerequisites
 
@@ -62,10 +64,10 @@ To complete this challenge successfully, you should be able to show:
 
 - A training script which includes a function to split the data and autologging using MLflow.
 
-When you've completed this challenge, move on to the [next challenge and learn how to run the script as an Azure Machine Learning job](02-aml-job.md).
-
 > **Note:**
 > If you've used a compute instance for experimentation, remember to stop the compute instance when you're done. 
+
+When you've completed this challenge, move on to the [next challenge and learn how to run the script as an Azure Machine Learning job](02-aml-job.md).
 
 ## Useful resources
 

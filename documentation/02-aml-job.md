@@ -55,6 +55,8 @@ To complete this challenge successfully, you should be able to show:
 > **Note:**
 > If you've used a compute instance for experimentation, remember to stop the compute instance when you're done. You can use the **Stop compute instance** workflow to stop the compute instance in your Azure Machine Learning workspace with GitHub Actions.
 
+When you've completed this challenge, move on to the [next challenge and learn how to run the script as an Azure Machine Learning job](03-github-actions.md).
+
 ## Useful resources
 
 - [Learning path on how to use the CLI v2 with Azure Machine Learning.](https://docs.microsoft.com/learn/paths/train-models-azure-machine-learning-cli-v2/)
