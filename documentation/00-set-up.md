@@ -1,8 +1,3 @@
----
-challenge:
-    module: 
-    challenge: 'Set-up'
----
 
 # Set-up
 
