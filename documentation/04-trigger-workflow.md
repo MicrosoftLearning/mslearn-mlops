@@ -12,9 +12,7 @@ Triggering a workflow by pushing directly to the repo is **not** considered a be
 
 ## Prerequisites
 
-If you haven't, complete the [set-up](00-set-up.md) before you continue.
-
-You'll also need the GitHub Action that triggers the Azure Machine Learning job created in Challenge 2. 
+If you haven't, complete the [previous challenge](03-github-actions.md) before you continue.
 
 ## Objectives
 
@@ -22,7 +20,7 @@ By completing this challenge, you'll learn how to:
 
 - Work with trunk-based development.
 - Protect the main branch.
-- Trigger a GitHub Actions workflow by merging a pull request.
+- Trigger a GitHub Actions workflow by creating a pull request.
 
 ## Challenge Duration
 
@@ -32,8 +30,12 @@ By completing this challenge, you'll learn how to:
 
 Use trunk-based development to better govern changes made to the repo and the triggering of GitHub Actions.
 
-- Create a GitHub Actions workflow which is triggered by a pull request. The workflow will be used for code verification in challenge 4. For now, you can include whatever step you want. For example, list the workspace.
+- Create a GitHub Actions workflow which is triggered by a pull request. The workflow will be used for code verification in the next challenge. For now, you can include whatever step you want. For example, list the workspace.
 - Create a **branch protection rule** to block any direct pushes to the **main** branch.
+
+> **Note:**
+> By default, branch protection rules do not apply to administrators. If you're the administrator of the repo you're working with, you'll still be allowed to push directly to the repo. 
+
 - Create a branch in the repo.
 - Make a change and push it. For example, change the hyperparameter value. 
 - Create a pull request. 
