@@ -14,12 +14,11 @@ The first step to automate machine learning workflows is to convert a Jupyter no
 .button  {
   border: none;
   color: white;
+  padding: 12px 28px;
   background-color: #008CBA;
 }
 </style>
 <button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
-
-<button onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
 ## Prerequisites
 
