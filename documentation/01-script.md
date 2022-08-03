@@ -28,7 +28,6 @@ To complete this challenge, you'll need:
 
 - Access to an Azure subscription.
 - A GitHub account.
-- A GitHub repo with all necessary files. Create a new public repo by navigating to [https://github.com/MicrosoftLearning/mslearn-mlops](https://github.com/MicrosoftLearning/mslearn-mlops) and selecting the **Use this template** button. 
 
 ## Objectives
 
@@ -45,19 +44,22 @@ By completing this challenge, you'll learn how to:
 
 ## Instructions
 
+To work through the challenges, you need **your own public repo** which includes the challenge files. Create a new public repo by navigating to [https://github.com/MicrosoftLearning/mslearn-mlops](https://github.com/MicrosoftLearning/mslearn-mlops) and selecting the **Use this template** button to create your own repo.
+
 In the **experimentation** folder, you'll find a Jupyter notebook that trains a classification model. The data used by the notebook is in the **experimentation/data** folder and contains a CSV file. 
 
-In the **src/model** folder you'll find a **train.py** script which already has converted most of the code from the notebook. It's up to you to complete it. 
+In the **src/model** folder you'll find a `train.py` script which already includes code converted from part of the notebook. It's up to you to complete it. 
 
 - Go through the notebook to understand what the code does. 
-- Convert the code under the **Split data** header and include it in the **train.py** script as a **split_data** function. Remember to:
+- Convert the code under the **Split data** header and include it in the `train.py` script as a `split_data` function. Remember to:
     - Remove nonessential code.
     - Include the necessary code as a function.
+    - Include any necessary libraries at the top of the script.
 
 <details>
 <summary>Hint</summary>
 <br/>
-The split_data function is already included in the main function. You only need to add the function itself with the required inputs and outputs underneath the comment <b>TO DO: add function to split data</b>. 
+The <code>split_data</code> function is already included in the main function. You only need to add the function itself with the required inputs and outputs underneath the comment <code>TO DO: add function to split data</code>. 
 </details>
 
 - Add logging so that every time you run the script, all parameters and metrics are tracked. Use the autologging feature of MLflow to also ensure the necessary model files are stored with the job run to easily deploy the model in the future.
@@ -65,7 +67,7 @@ The split_data function is already included in the main function. You only need 
 <details>
 <summary>Hint</summary>
 <br/>
-MLflow is an open source library for tracking and managing machine learning models. You can use it to track custom metrics. However, since the current model is trained with the common Scikit-learn library, you can also use autologging. By enabling autologging, using `mlflow.autolog()` all parameters, metrics, and model files will automatically be stored with your job run. Enable autologging in the main function under <b>TO DO: enable autologging</b>.
+MLflow is an open source library for tracking and managing machine learning models. You can use it to track custom metrics. However, since the current model is trained with the common Scikit-learn library, you can also use autologging. By enabling autologging with <code>mlflow.autolog()</code>, all parameters, metrics, and model files will automatically be stored with your job run. Enable autologging in the main function under <code>TO DO: enable autologging</code>.
 </details>
 
 ## Success criteria

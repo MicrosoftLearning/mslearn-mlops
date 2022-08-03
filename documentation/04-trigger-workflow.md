@@ -4,7 +4,19 @@ challenge:
     challenge: '4: Trigger GitHub Actions with trunk-based development'
 ---
 
-# Challenge: Trigger GitHub Actions with trunk-based development
+<style>
+.button  {
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  background-color: #008CBA;
+  float: right;
+}
+</style>
+
+# Challenge 4: Trigger GitHub Actions with trunk-based development
+
+<button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
 ## Challenge scenario
 
@@ -30,27 +42,40 @@ By completing this challenge, you'll learn how to:
 
 Use trunk-based development to better govern changes made to the repo and the triggering of GitHub Actions.
 
-- Create a GitHub Actions workflow which is triggered by a pull request. The workflow will be used for code verification in the next challenge. For now, you can include whatever step you want. For example, list the workspace.
+- Create a GitHub Actions workflow which is triggered by the creation of a pull request. 
+
+    The workflow will be used for code verification in the next challenge. For now, you can include whatever step you want. For example, use the `echo` command:
+
+```yml
+    - name: Placeholder
+      run: |
+        echo "Will add code checks here in next challenge"
+```
+
 - Create a **branch protection rule** to block any direct pushes to the **main** branch.
 
 > **Note:**
 > By default, branch protection rules do not apply to administrators. If you're the administrator of the repo you're working with, you'll still be allowed to push directly to the repo. 
 
+To trigger the workflow, do the following:
+
 - Create a branch in the repo.
 - Make a change and push it. For example, change the hyperparameter value. 
-- Create a pull request. 
-- Trigger a GitHub Actions workflow by creating a pull request.
+- Create a pull request merge the new branch with the main. 
 
 ## Success criteria
 
 To complete this challenge successfully, you should be able to show:
 
 - The branch protection rule for the main branch.
-- A successfully completed Action in your GitHub repo. 
-- An event in the GitHub Action that ensures the workflow is triggered by a new pull request.
+- A successfully completed Action in your GitHub repo which is triggered by a new pull request.
 
 ## Useful resources
 
-- [Learning path covering an introduction of DevOps principles for machine learning.](https://docs.microsoft.com/learn/paths/introduction-machine-learn-operations/)
-- [GitHub Actions.](https://docs.github.com/actions/guides)
+- Learn more about source control for machine learning projects and [how to work with trunk-based development and GitHub repos.](https://docs.microsoft.com/learn/modules/source-control-for-machine-learning-projects/)
+- [General documentation for GitHub Actions.](https://docs.github.com/actions/guides)
 - [Triggering a GitHub Actions workflow.](https://docs.github.com/actions/using-workflows/triggering-a-workflow)
+- [Events that trigger workflows.](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows)
+- [Workflow syntax for GitHub Actions.](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions)
+
+<button class="button" onclick="window.location.href='05-unit-test-linting';">Continue with challenge 5</button>

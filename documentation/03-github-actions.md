@@ -20,13 +20,13 @@ challenge:
 
 ## Challenge scenario
 
-The benefit of using the CLI v2 to run an Azure Machine Learning job, is that you can submit the job from anywhere. Using a platform like GitHub will allow you to automate Azure Machine Learning jobs. To trigger the job to run, you can use GitHub Actions.
+The benefit of using the CLI (v2) to run an Azure Machine Learning job, is that you can submit the job from anywhere. Using a platform like GitHub will allow you to automate Azure Machine Learning jobs. To trigger the job to run, you can use GitHub Actions.
 
 ## Prerequisites
 
 If you haven't, complete the [previous challenge](02-aml-job.md) before you continue.
 
-For this challenge, you should have the authorization to create a service principal. 
+To complete the challenge, you need to have the authorization to create a service principal. 
 
 ## Objectives
 
@@ -34,17 +34,18 @@ By completing this challenge, you'll learn how to:
 
 - Create a service principal and use it to create a GitHub secret for authentication.
 - Run the Azure Machine Learning job with GitHub Actions.
-- Trigger the job with a change to the repo.
 
 ## Challenge Duration
 
-- **Estimated Time**: 30 minutes
+- **Estimated Time**: 45 minutes
 
 ## Instructions
 
 In the **.github/workflows** folder, you'll find the `03-manual-trigger.yml` file. The file defines a GitHub Action which can be manually triggered. The workflow checks out the repo onto the runner, installs the Azure Machine Learning extension for the CLI (v2), and logs in to Azure using the `AZURE_CREDENTIALS` secret.
 
-- Create a service principal, using the Cloud Shell in the Azure portal, which has contributor access to your resource group. **Save the output**, you'll also need it for later challenges. Update the `<service-principal-name>` and `<subscription-id>` before using the following command:
+- Create a service principal, using the Cloud Shell in the Azure portal, which has contributor access to your resource group. 
+    
+    **Save the output**, you'll *also* need it for later challenges. Update the `<service-principal-name>` (should be unique) and `<subscription-id>` before using the following command:
 ```azurecli
     az ad sp create-for-rbac --name "<service-principal-name>" --role contributor \
                                 --scopes /subscriptions/<subscription-id>/resourceGroups/rg-dev-mlops \
@@ -86,7 +87,7 @@ To complete this challenge successfully, you should be able to show:
 
 - A successfully completed Action in your GitHub repo, triggered manually in GitHub.
 - A step in the Action should have submitted a job to the Azure Machine Learning workspace.
-- A successfully completed Azure Machine Learning job.
+- A successfully completed Azure Machine Learning job, shown in the Azure Machine Learning workspace.
 
 ## Useful resources
 
@@ -98,4 +99,4 @@ To complete this challenge successfully, you should be able to show:
 - [Re-running workflows and jobs in GitHub Actions.](https://docs.github.com/actions/managing-workflow-runs/re-running-workflows-and-jobs)
 - [General documentation for GitHub Actions.](https://docs.github.com/actions/guides)
 
-<button class="button" onclick="window.location.href='04-trigger-workflow';">Continue with challenge 2</button>
+<button class="button" onclick="window.location.href='04-trigger-workflow';">Continue with challenge 4</button>

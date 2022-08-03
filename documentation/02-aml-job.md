@@ -20,7 +20,7 @@ challenge:
 
 ## Challenge scenario
 
-To automate machine learning workflows, you can define machine learning tasks in scripts. To execute any workflow consisting of Python scripts, use Azure Machine Learning jobs. Azure Machine Learning jobs store all metadata of a workflow, including input and output parameters. By running scripts as jobs, it's easier to track and manage your machine learning models.
+To automate machine learning workflows, you can define machine learning tasks in scripts. To execute any workflow consisting of Python scripts, use Azure Machine Learning jobs. Azure Machine Learning jobs store all metadata of a workflow, including input parameters and output metrics. By running scripts as jobs, it's easier to track and manage your machine learning models.
 
 ## Prerequisites
 
@@ -39,12 +39,12 @@ By completing this challenge, you'll learn how to:
 
 ## Instructions
 
-In the **src/model** folder, you'll find a Python script which reads CSV files from a datastore and uses the data to train a classification model. In the **src** folder, you'll find a YAML file to define a job. There are values missing in the YAML file. It's up to you to complete it. 
+In the **src/model** folder, you'll find a Python script which reads CSV files from a folder and uses the data to train a classification model. In the **src** folder, you'll find a YAML file to define a job. There are values missing in the YAML file. It's up to you to complete it. 
 
 - Create an Azure Machine Learning workspace and a compute instance.
-- Use the CLI (v2) to create a registered data asset with the following settings:
-    - **Name**: *diabetes-folder*
-    - **Path**: The *Data* folder which contains the CSV file to train the model. The path should point to the folder, not to the specific file.
+- Use the CLI (v2) to create a registered data asset with the following configuration:
+    - **Name**: *diabetes-dev-folder*
+    - **Path**: The **data** folder in the **experimentation** folder which contains the CSV file to train the model. The path should point to the folder, not to the specific file.
 
 <details>
 <summary>Hint</summary>
@@ -52,8 +52,8 @@ In the **src/model** folder, you'll find a Python script which reads CSV files f
 Using the CLI (v2) you can create a data asset by defining the <a href="https://docs.microsoft.com/azure/machine-learning/reference-yaml-data">configuration in a YAML file</a> <b>or</b> by specifying the configuration in the <a href="https://docs.microsoft.com/cli/azure/ml/data?view=azure-cli-latest">CLI command</a>.
 </details>
  
-- Complete the `job.yml` file to define the Azure Machine Learning job to run the `train.py` script.
-- Use the CLI (v2) to run the job with the registered data asset as input. 
+- Complete the `job.yml` file to define the Azure Machine Learning job to run the `train.py` script, with the registered data asset as input. 
+- Use the CLI (v2) to run the job. 
 
 > **Tip:**
 > Whether you're working from the Cloud Shell, compute instance or a local terminal, make sure to update the Azure Machine Learning extension for the CLI to the latest version.
@@ -62,10 +62,10 @@ Using the CLI (v2) you can create a data asset by defining the <a href="https://
 
 To complete this challenge successfully, you should be able to show:
 
-- A successfully completed job in the Azure Machine Learning workspace.
+- A successfully completed job in the Azure Machine Learning workspace. The job should contain all input parameters and output metrics for the model you trained.
 
 > **Note:**
-> If you've used a compute instance for experimentation, remember to stop the compute instance when you're done. You can use the **Stop compute instance** workflow to stop the compute instance in your Azure Machine Learning workspace with GitHub Actions.
+> If you've used a compute instance for experimentation, remember to stop the compute instance when you're done. 
 
 ## Useful resources
 
