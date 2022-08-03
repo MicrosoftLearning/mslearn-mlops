@@ -13,7 +13,7 @@ The benefit of using the CLI v2 to run an Azure Machine Learning job, is that yo
 
 ## Prerequisites
 
-If you haven't, complete the [previous challenge](01-script.md) before you continue.
+If you haven't, complete the [previous challenge](02-aml-job.md) before you continue.
 
 For this challenge, you should have the authorization to create a service principal. 
 
