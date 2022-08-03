@@ -76,7 +76,9 @@ To complete this challenge successfully, you should be able to show:
 > **Note:**
 > If you've used a compute instance for experimentation, remember to stop the compute instance when you're done. 
 
-When you've completed this challenge, move on to the [next challenge and learn how to run the script as an Azure Machine Learning job](02-aml-job.md).
+When you've completed this challenge, move on to the next challenge:
+
+<button class="button" onclick="window.location.href='02-aml-job';">Continue with challenge 2</button>
 
 ## Useful resources
 
