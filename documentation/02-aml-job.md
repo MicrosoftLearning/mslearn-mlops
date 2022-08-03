@@ -4,7 +4,19 @@ challenge:
     challenge: '2: Create an Azure Machine Learning job'
 ---
 
-# Challenge: Create an Azure Machine Learning job
+<style>
+.button  {
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  background-color: #008CBA;
+  float: right;
+}
+</style>
+
+# Challenge 2: Create an Azure Machine Learning job
+
+<button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
 ## Challenge scenario
 
@@ -55,8 +67,6 @@ To complete this challenge successfully, you should be able to show:
 > **Note:**
 > If you've used a compute instance for experimentation, remember to stop the compute instance when you're done. You can use the **Stop compute instance** workflow to stop the compute instance in your Azure Machine Learning workspace with GitHub Actions.
 
-When you've completed this challenge, move on to the [next challenge and learn how to run the script as an Azure Machine Learning job](03-github-actions.md).
-
 ## Useful resources
 
 - [Learning path on how to use the CLI v2 with Azure Machine Learning.](https://docs.microsoft.com/learn/paths/train-models-azure-machine-learning-cli-v2/)
@@ -67,3 +77,4 @@ When you've completed this challenge, move on to the [next challenge and learn h
 - [YAML reference for command jobs.](https://docs.microsoft.com/azure/machine-learning/reference-yaml-job-command) 
 - [Example job YAML files.](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/basics) 
 
+<button class="button" onclick="window.location.href='03-github-actions';">Continue with challenge 3</button>

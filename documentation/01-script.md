@@ -77,12 +77,10 @@ To complete this challenge successfully, you should be able to show:
 > **Note:**
 > If you've used a compute instance for experimentation, remember to stop the compute instance when you're done. 
 
-When you've completed this challenge, move on to the next challenge:
-
-<button class="button" onclick="window.location.href='02-aml-job';">Continue with challenge 2</button>
-
 ## Useful resources
 
 - [Tutorial: Convert ML experiments to production Python code](https://docs.microsoft.com/azure/machine-learning/tutorial-convert-ml-experiment-to-production)
 - [Logging MLflow models in Azure Machine Learning](https://docs.microsoft.com/azure/machine-learning/how-to-log-mlflow-models)
 - [MLflow documentation](https://www.mlflow.org/docs/latest/python_api/mlflow.html)
+
+<button class="button" onclick="window.location.href='02-aml-job';">Continue with challenge 2</button>

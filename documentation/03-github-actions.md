@@ -4,8 +4,19 @@ challenge:
     challenge: '3: Trigger the Azure Machine Learning job with GitHub Actions'
 ---
 
+<style>
+.button  {
+  border: none;
+  color: white;
+  padding: 12px 28px;
+  background-color: #008CBA;
+  float: right;
+}
+</style>
 
-# Challenge: Trigger the Azure Machine Learning job with GitHub Actions
+# Challenge 3: Trigger the Azure Machine Learning job with GitHub Actions
+
+<button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
 ## Challenge scenario
 
@@ -77,8 +88,6 @@ To complete this challenge successfully, you should be able to show:
 - A step in the Action should have submitted a job to the Azure Machine Learning workspace.
 - A successfully completed Azure Machine Learning job.
 
-When you've completed this challenge, move on to the [next challenge and learn how trigger a GitHub Actions workflow with an event](04-trigger-workflow.md).
-
 ## Useful resources
 
 - The introduction to DevOps principles for machine learning module covers [how to integrate Azure Machine Learning with DevOps tools.](https://docs.microsoft.com/learn/paths/introduction-machine-learn-operations/)
@@ -88,3 +97,5 @@ When you've completed this challenge, move on to the [next challenge and learn h
 - [Manually running a workflow in GitHub Actions.](https://docs.github.com/actions/managing-workflow-runs/manually-running-a-workflow)
 - [Re-running workflows and jobs in GitHub Actions.](https://docs.github.com/actions/managing-workflow-runs/re-running-workflows-and-jobs)
 - [General documentation for GitHub Actions.](https://docs.github.com/actions/guides)
+
+<button class="button" onclick="window.location.href='04-trigger-workflow';">Continue with challenge 2</button>
