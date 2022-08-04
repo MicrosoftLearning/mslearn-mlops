@@ -45,10 +45,10 @@ In the **.github/workflows** folder, you'll find the `02-manual-trigger.yml` fil
 
 - Create a service principal, using the Cloud Shell in the Azure portal, which has contributor access to your resource group. 
     
-    **Save the output**, you'll *also* need it for later challenges. Update the `<service-principal-name>` (should be unique) and `<subscription-id>` before using the following command:
+    **Save the output**, you'll *also* need it for later challenges. Update the `<service-principal-name>` (should be unique), `<subscription-id>`, and `<your-resource-group-name>` before using the following command:
 ```azurecli
     az ad sp create-for-rbac --name "<service-principal-name>" --role contributor \
-                                --scopes /subscriptions/<subscription-id>/resourceGroups/rg-dev-mlops \
+                                --scopes /subscriptions/<subscription-id>/resourceGroups/<your-resource-group-name> \
                                 --sdk-auth
 ```
 - Create a GitHub secret in your repository. Name it `AZURE_CREDENTIALS` and copy and paste the output of the service principal to the **Value** field of the secret. 
