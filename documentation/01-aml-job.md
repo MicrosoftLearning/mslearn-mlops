@@ -1,7 +1,7 @@
 ---
 challenge:
     module: Use an Azure Machine Learning job for automation
-    challenge: '2: Create an Azure Machine Learning job'
+    challenge: '1: Create an Azure Machine Learning job'
 ---
 
 <style>
@@ -14,7 +14,7 @@ challenge:
 }
 </style>
 
-# Challenge 2: Create an Azure Machine Learning job
+# Challenge 1: Create an Azure Machine Learning job
 
 <button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
@@ -24,7 +24,7 @@ To automate machine learning workflows, you can define machine learning tasks in
 
 ## Prerequisites
 
-If you haven't, complete the [previous challenge](01-script.md) before you continue.
+If you haven't, complete the [previous challenge](00-script.md) before you continue.
 
 ## Objectives
 
@@ -77,4 +77,4 @@ To complete this challenge successfully, you should be able to show:
 - [YAML reference for command jobs.](https://docs.microsoft.com/azure/machine-learning/reference-yaml-job-command) 
 - [Example job YAML files.](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/basics) 
 
-<button class="button" onclick="window.location.href='03-github-actions';">Continue with challenge 3</button>
+<button class="button" onclick="window.location.href='02-github-actions';">Continue with challenge 2</button>

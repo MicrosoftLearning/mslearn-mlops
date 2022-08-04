@@ -1,7 +1,7 @@
 ---
 challenge:
     module: 'Work with environments in GitHub Actions'
-    challenge: '6: Work with environments'
+    challenge: '5: Work with environments'
 ---
 
 <style>
@@ -14,7 +14,7 @@ challenge:
 }
 </style>
 
-# Challenge 6: Work with environments
+# Challenge 5: Work with environments
 
 <button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
@@ -26,11 +26,11 @@ Use environments to isolate workloads and control the deployment of the model.
 
 ## Prerequisites
 
-If you haven't, complete the [previous challenge](05-unit-test-linting.md) before you continue.
+If you haven't, complete the [previous challenge](04-unit-test-linting.md) before you continue.
 
 **Your repo should be set to public**. If you're using a private repo without GitHub Enterprise Cloud, you'll not be able to create environments. [Change the visibility of your repo to public](https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility) if your repo is set to private.
 
-You'll re-use the workflow you created for [challenge 3: trigger the Azure Machine Learning job with GitHub Actions](03-github-actions.md). 
+You'll re-use the workflow you created for [challenge 2: trigger the Azure Machine Learning job with GitHub Actions](02-github-actions.md). 
 
 ## Objectives
 
@@ -46,22 +46,26 @@ By completing this challenge, you'll learn how to:
 
 ## Instructions
 
+Initially, data scientists will train the model in an Azure Machine Learning workspace which is configured for experimentation. Ideally, we don't want to make the production data available in the experimentation or development environment. Instead, data scientists will only have access to a small dataset which should behave similarly to the production dataset. 
+
+By reusing the training script created by the data scientists, you can train the model in the production environment using the production data, simply by changing the data input.
+
 > **Note:**
 > Though it's a best practice to associate a separate Azure Machine Learning workspace to each separate environment, you can use one workspace for both the development and production environment for this challenge (to avoid extra costs). 
 
 - Within your GitHub repo, create a development and production environment.
+- Add an approval check for the production environment. 
+- Remove the global repo **AZURE_CREDENTIALS** secret, so that each environment will only be able to use its own secret.
 - For each environment, add the **AZURE_CREDENTIALS** secret that contains the service principal output. 
 
 > **Note:**
-> If you don't have the service principal output anymore from [challenge 3](03-github-actions.md), go back to the Azure portal and create it again. You can only get the necessary output at the time of creation.
+> If you don't have the service principal output anymore from [challenge 2](03-github-actions.md), go back to the Azure portal and create it again. You can only get the necessary output at the time of creation.
 
-- Remove the global repo **AZURE_CREDENTIALS** secret, so that each environment can only use its own secret.
-- Add an approval check for the production environment.
 - Create a new data asset in the workspace with the following configuration:
   - **Name**: *diabetes-prod-folder*
   - **Path**: The **data** folder in the **production** folder which contains a larger CSV file to train the model. The path should point to the folder, not to the specific file.  
-- Create one GitHub Actions workflow with two jobs:
-  - The **experiment** job that trains the model using the registered dataset in the **development environment**. 
+- Create one GitHub Actions workflow, triggered by changes being pushed to the main branch, with two jobs:
+  - The **experiment** job that trains the model using the *diabetes-dev-folder* dataset in the **development environment**. 
   - The **production** job that trains the model in the **production environment**, using the production data (the *diabetes-prod-folder* data asset as input).
 - Add a condition that the **production** job is only allowed to run when the **experiment** job ran *successfully*. Success means that the Azure Machine Learning job ran successfully too.
 
@@ -88,4 +92,4 @@ To complete this challenge successfully, you should be able to show:
 - [How to create a secret in a GitHub repo.](https://docs.github.com/actions/security-guides/encrypted-secrets)
 - [CLI reference for jobs.](https://docs.microsoft.com/cli/azure/ml/job?view=azure-cli-latest)
 
-<button class="button" onclick="window.location.href='07-deploy-model';">Continue with challenge 7</button>
+<button class="button" onclick="window.location.href='06-deploy-model';">Continue with challenge 6</button>

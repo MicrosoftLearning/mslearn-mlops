@@ -1,7 +1,7 @@
 ---
 challenge:
     module: 'Work with linting and unit testing in GitHub Actions'
-    challenge: '5: Work with linting and unit testing'
+    challenge: '4: Work with linting and unit testing'
 ---
 
 <style>
@@ -14,7 +14,7 @@ challenge:
 }
 </style>
 
-# Challenge 5: Work with linting and unit testing
+# Challenge 4: Work with linting and unit testing
 
 <button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
@@ -24,7 +24,7 @@ Code quality can be assessed in two ways: linting and unit testing. Use linting 
 
 ## Prerequisites
 
-If you haven't, complete the [previous challenge](04-trigger-workflow.md) before you continue.
+If you haven't, complete the [previous challenge](03-trigger-workflow.md) before you continue.
 
 You'll complete the workflow created in the previous challenge.
 
@@ -87,4 +87,4 @@ To complete this challenge successfully, you should be able to show:
 
 In this challenge, all testing is executed with GitHub Actions. Optionally, you can learn how to [verify your code locally with Visual Studio Code](https://docs.microsoft.com/learn/modules/source-control-for-machine-learning-projects/5-verify-your-code-locally). Running linters and unit tests locally is not required for this challenge.
 
-<button class="button" onclick="window.location.href='06-environments';">Continue with challenge 6</button>
+<button class="button" onclick="window.location.href='05-environments';">Continue with challenge 5</button>

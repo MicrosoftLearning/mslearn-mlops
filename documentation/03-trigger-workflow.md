@@ -1,7 +1,7 @@
 ---
 challenge:
     module: 'Trigger GitHub Actions with trunk-based development'
-    challenge: '4: Trigger GitHub Actions with trunk-based development'
+    challenge: '3: Trigger GitHub Actions with trunk-based development'
 ---
 
 <style>
@@ -14,7 +14,7 @@ challenge:
 }
 </style>
 
-# Challenge 4: Trigger GitHub Actions with trunk-based development
+# Challenge 3: Trigger GitHub Actions with trunk-based development
 
 <button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
@@ -24,7 +24,7 @@ Triggering a workflow by pushing directly to the repo is **not** considered a be
 
 ## Prerequisites
 
-If you haven't, complete the [previous challenge](03-github-actions.md) before you continue.
+If you haven't, complete the [previous challenge](02-github-actions.md) before you continue.
 
 ## Objectives
 
@@ -78,4 +78,4 @@ To complete this challenge successfully, you should be able to show:
 - [Events that trigger workflows.](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows)
 - [Workflow syntax for GitHub Actions.](https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions)
 
-<button class="button" onclick="window.location.href='05-unit-test-linting';">Continue with challenge 5</button>
+<button class="button" onclick="window.location.href='04-unit-test-linting';">Continue with challenge 4</button>

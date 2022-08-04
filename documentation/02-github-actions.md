@@ -1,7 +1,7 @@
 ---
 challenge:
     module: 'Trigger Azure Machine Learning jobs with GitHub Actions'
-    challenge: '3: Trigger the Azure Machine Learning job with GitHub Actions'
+    challenge: '2: Trigger the Azure Machine Learning job with GitHub Actions'
 ---
 
 <style>
@@ -14,7 +14,7 @@ challenge:
 }
 </style>
 
-# Challenge 3: Trigger the Azure Machine Learning job with GitHub Actions
+# Challenge 2: Trigger the Azure Machine Learning job with GitHub Actions
 
 <button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
@@ -24,7 +24,7 @@ The benefit of using the CLI (v2) to run an Azure Machine Learning job, is that 
 
 ## Prerequisites
 
-If you haven't, complete the [previous challenge](02-aml-job.md) before you continue.
+If you haven't, complete the [previous challenge](01-aml-job.md) before you continue.
 
 To complete the challenge, you need to have the authorization to create a service principal. 
 
@@ -41,7 +41,7 @@ By completing this challenge, you'll learn how to:
 
 ## Instructions
 
-In the **.github/workflows** folder, you'll find the `03-manual-trigger.yml` file. The file defines a GitHub Action which can be manually triggered. The workflow checks out the repo onto the runner, installs the Azure Machine Learning extension for the CLI (v2), and logs in to Azure using the `AZURE_CREDENTIALS` secret.
+In the **.github/workflows** folder, you'll find the `02-manual-trigger.yml` file. The file defines a GitHub Action which can be manually triggered. The workflow checks out the repo onto the runner, installs the Azure Machine Learning extension for the CLI (v2), and logs in to Azure using the `AZURE_CREDENTIALS` secret.
 
 - Create a service principal, using the Cloud Shell in the Azure portal, which has contributor access to your resource group. 
     
@@ -73,7 +73,7 @@ The output of the service principal which you need to paste into the <b>Value</b
 </pre>
 </details>
 
-- Edit the `03-manual-trigger.yml` workflow to trigger the Azure Machine Learning job you defined in challenge 2.
+- Edit the `02-manual-trigger.yml` workflow to trigger the Azure Machine Learning job you defined in challenge 1.
 
 <details>
 <summary>Hint</summary>
@@ -99,4 +99,4 @@ To complete this challenge successfully, you should be able to show:
 - [Re-running workflows and jobs in GitHub Actions.](https://docs.github.com/actions/managing-workflow-runs/re-running-workflows-and-jobs)
 - [General documentation for GitHub Actions.](https://docs.github.com/actions/guides)
 
-<button class="button" onclick="window.location.href='04-trigger-workflow';">Continue with challenge 4</button>
+<button class="button" onclick="window.location.href='03-trigger-workflow';">Continue with challenge 3</button>
