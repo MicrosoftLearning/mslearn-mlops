@@ -48,7 +48,7 @@ In the **tests** folder, you'll find files that will perform linting and unit te
 <details>
 <summary>Hint</summary>
 <br/>
-Whenever the linter finds an error, the GitHub Actions step will fail with exit code 1. Inspect the output of the workflow to see the specific error codes for the linter. Next to the error code, the output will also list source file with the line number and column number to help you find the cause of the error.
+Whenever the linter finds an error, the GitHub Actions step will fail with exit code 1. Inspect the output of the workflow to see the specific error codes for the linter. Next to the error code, the output will also list the source file with the line number and column number to help you find the cause of the error.
 </details>
 
 - Add linting and unit tests jobs to the workflow you created in the previous challenge. The workflow should be triggered by the creation of a new pull request. The workflow should run the Flake8 linter *and* run the Pytest unit tests.
