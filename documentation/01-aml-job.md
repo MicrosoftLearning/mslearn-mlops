@@ -33,6 +33,9 @@ By completing this challenge, you'll learn how to:
 - Define an Azure Machine Learning job in YAML.
 - Run an Azure Machine Learning job with the CLI v2.
 
+> **Important!**
+> Each challenge is designed to allow you to explore how to implement DevOps principles when working with machine learning models. Some instructions may be intentionally vague, inviting you to think about your own preferred approach. If for example, the instructions ask you to create an Azure Machine Learning workspace, it's up to you to explore and decide how you want to create it. To make it the best learning experience for you, it's up to you to make it as simple or as challenging as you want.
+
 ## Challenge Duration
 
 - **Estimated Time**: 30 minutes
