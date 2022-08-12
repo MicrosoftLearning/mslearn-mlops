@@ -1,7 +1,9 @@
 name: Manually trigger an Azure Machine Learning job
 
 on:
-  workflow_dispatch:
+  push:
+    branches: 
+      - main
   
 permissions:
       id-token: write
@@ -24,8 +26,6 @@ jobs:
           
     - name: 'Run Azure CLI commands'
       run: |
-          az account show
-          az group list
-          pwd 
+          az ml job create -g mlhack-rg -w wviriyaml -f ./src/job.yml
 
 
