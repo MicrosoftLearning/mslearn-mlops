@@ -1,7 +1,7 @@
 ---
 challenge:
-    module: 'Trigger GitHub Actions with trunk-based development'
-    challenge: '3: Trigger GitHub Actions with trunk-based development'
+    module: 'Trigger GitHub Actions with pull requests'
+    challenge: '3: Trigger GitHub Actions with pull requests'
 ---
 
 <style>
@@ -14,7 +14,7 @@ challenge:
 }
 </style>
 
-# Challenge 3: Trigger GitHub Actions with trunk-based development
+# Challenge 3: Trigger GitHub Actions with pull requests
 
 <button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
@@ -30,7 +30,7 @@ If you haven't, complete the [previous challenge](02-github-actions.md) before y
 
 By completing this challenge, you'll learn how to:
 
-- Work with trunk-based development.
+- Work with branches and pull requests.
 - Protect the main branch.
 - Trigger a GitHub Actions workflow by creating a pull request.
 
@@ -43,7 +43,7 @@ By completing this challenge, you'll learn how to:
 
 ## Instructions
 
-Use trunk-based development to better govern changes made to the repo and the triggering of GitHub Actions.
+Use pull requests, branch protection, and code reviews to better govern changes made to the repo and the triggering of GitHub Actions.
 
 - Create a GitHub Actions workflow which is triggered by the creation of a pull request. 
 
