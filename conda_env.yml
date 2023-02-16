@@ -1,14 +1,15 @@
 channels:
   - conda-forge
 dependencies:
-  - python=3.10.9
-  - pip=22.3.1
+  - python=3.9.7
+  - pip=22.2.2
   - pip:
       - azureml-defaults==1.48.0
       - azureml-sdk==1.48.0
-      - python pytest==7.1.2
+      - pytest==7.1.2
       - mlflow==1.27.0
       - pandas==1.4.3
       - sklearn==0.0
       - scikit-learn==1.1.1
+      - matplotlib==3.7.0
 name: mslearn-mlops
