@@ -1,7 +1,7 @@
 ---
 challenge:
-    module: 'Trigger GitHub Actions with trunk-based development'
-    challenge: '3: Trigger GitHub Actions with trunk-based development'
+    module: 'Trigger GitHub Actions with feature-based development'
+    challenge: '3: Trigger GitHub Actions with feature-based development'
 ---
 
 <style>
@@ -14,7 +14,7 @@ challenge:
 }
 </style>
 
-# Challenge 3: Trigger GitHub Actions with trunk-based development
+# Challenge 3: Trigger GitHub Actions with feature-based development
 
 <button class="button" onclick="window.location.href='https://microsoftlearning.github.io/mslearn-mlops/';">Back to overview</button>
 
@@ -30,7 +30,7 @@ If you haven't, complete the [previous challenge](02-github-actions.md) before y
 
 By completing this challenge, you'll learn how to:
 
-- Work with trunk-based development.
+- Work with feature-based development.
 - Protect the main branch.
 - Trigger a GitHub Actions workflow by creating a pull request.
 
@@ -43,7 +43,7 @@ By completing this challenge, you'll learn how to:
 
 ## Instructions
 
-Use trunk-based development to better govern changes made to the repo and the triggering of GitHub Actions.
+Use feature-based development to better govern changes made to the repo and the triggering of GitHub Actions.
 
 - Create a GitHub Actions workflow which is triggered by the creation of a pull request. 
 
@@ -75,7 +75,7 @@ To complete this challenge successfully, you should be able to show:
 
 ## Useful resources
 
-- Learn more about source control for machine learning projects and [how to work with trunk-based development and GitHub repos.](https://docs.microsoft.com/learn/modules/source-control-for-machine-learning-projects/)
+- Learn more about source control for machine learning projects and [how to work with feature-based development and GitHub repos.](https://docs.microsoft.com/learn/modules/source-control-for-machine-learning-projects/)
 - [General documentation for GitHub Actions.](https://docs.github.com/actions/guides)
 - [Triggering a GitHub Actions workflow.](https://docs.github.com/actions/using-workflows/triggering-a-workflow)
 - [Events that trigger workflows.](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows)
