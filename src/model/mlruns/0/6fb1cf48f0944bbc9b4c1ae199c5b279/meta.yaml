@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/src/mslearn-mlops/src/model/mlruns/0/6fb1cf48f0944bbc9b4c1ae199c5b279/artifacts
+end_time: 1690958292783
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6fb1cf48f0944bbc9b4c1ae199c5b279
+run_name: debonair-crab-174
+run_uuid: 6fb1cf48f0944bbc9b4c1ae199c5b279
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1690958287282
+status: 3
+tags: []
+user_id: Sbadran
