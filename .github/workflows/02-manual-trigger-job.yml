@@ -7,7 +7,8 @@ jobs:
   train:
     runs-on: ubuntu-latest
     steps:
-    
+    - name: Install az ml extension
+      run: az extension add -n ml -y
     - name: Azure login
       uses: azure/login@v1
       with:
