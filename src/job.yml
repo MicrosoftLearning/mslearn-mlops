@@ -10,6 +10,6 @@ inputs:
     path: azureml:diabetes-data:1
   reg_rate: 0.01
 environment: azureml:my-demo-env@latest
-compute: azureml:aml-instance
+compute: azureml:myCluster
 experiment_name: diabetes-data-example
 description: Train a classification model on diabetes data using a registered dataset as input.
