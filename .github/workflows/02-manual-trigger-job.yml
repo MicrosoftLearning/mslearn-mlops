@@ -17,5 +17,8 @@ jobs:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Train a classification model
       run: az ml job create --file ./src/job.yml --workspace-name ckurt-ml-workspace --resource-group CK_AI-ML
+    - name: Placeholder
+      run: |
+        echo "Will add code checks here in next challenge"
 
 
