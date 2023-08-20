@@ -1,13 +1,13 @@
 $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 code: model
 command: >-
-  python 
-  --
-  --
+  python train.py
+  --training_data ${{training_data}}
+  -- reg_rate${{reg_rate}}
 inputs:
   training_data: 
     type: uri_folder 
-    path: 
+    path: "experimentation/data/diabetes-dev.csv"
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 compute: 
