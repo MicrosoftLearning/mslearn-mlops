@@ -12,7 +12,6 @@ from sklearn.metrics import accuracy_score
 import mlflow
 import mlflow.sklearn
 
-
 # define functions
 def main(args):
     # TO DO: enable autologging
