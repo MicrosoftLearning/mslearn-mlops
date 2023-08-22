@@ -1,6 +1,6 @@
 ---
 challenge:
-    module: Use an Azure Machine Learning job for automation
+    module: Convert a notebook to production code
     challenge: '0: Convert a notebook to production code'
 ---
 
