@@ -1,0 +1,5 @@
+$schema: https://azuremlschemas.azureedge.net/latest/asset.schema.json
+name: diabetes-dev-folder
+version: 1
+path: experimentation/data
+description: Dataset pointing to diabetes-dev CSV in the repo. Data will be uploaded to default datastore.
