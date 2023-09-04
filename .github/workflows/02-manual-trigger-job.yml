@@ -6,7 +6,7 @@ on:
     branches: [main]
  
 env:
-  workspace-name: myWorkspace # name of the Azure Machine Learning workspace
+  workspace-name: myWorkspace # name of the Azure Machine Learning workspace test
   resource-group: myResourceGroup # name of the Azure resource group
  
 permissions:
