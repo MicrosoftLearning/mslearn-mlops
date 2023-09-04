@@ -49,6 +49,18 @@ jobs:
     - name: Run unit tests
       run: | 
         pytest tests/test_train.py
+  security: # new job for Snyk
+    runs-on: ubuntu-latest
+    needs: [unit-test]
+    name: Snyk scan
+    steps:
+    - uses: actions/checkout@master
+    - name: Snyk scan
+      uses: snyk/actions/python-3.8@master
+      env:
+       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+       args: --severity-threshold=hig
   train:
     runs-on: ubuntu-latest
     needs: [unit-test]
