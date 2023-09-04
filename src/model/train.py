@@ -34,7 +34,6 @@ def get_csvs_df(path):
     return pd.concat((pd.read_csv(f) for f in csv_files), sort=False)
 
 
-
 from sklearn.model_selection import train_test_split
 
  
