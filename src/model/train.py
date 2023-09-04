@@ -37,10 +37,13 @@ def get_csvs_df(path):
 # TO DO: add function to split data
 from sklearn.model_selection import train_test_split
  
-def split_data(df, test_size=0.2): 
+def split_data(df, test_size=0.2):
+    # split data into train and test sets 
     X = df.drop("Diabetic", axis=1) 
     y = df["Diabetic"] 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size) 
+    X_train, X_test, y_train, y_test = train_test_split(
+        # new line
+        X, y, test_size=test_size) 
     return X_train, X_test, y_train, y_test 
 
 def train_model(reg_rate, X_train, X_test, y_train, y_test):
