@@ -3,9 +3,7 @@
 import argparse
 import glob
 import os
-
 import pandas as pd
-
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split 
 from mlflow.sklearn import autolog 
@@ -34,9 +32,6 @@ def get_csvs_df(path):
     return pd.concat((pd.read_csv(f) for f in csv_files), sort=False)
 
 
-from sklearn.model_selection import train_test_split
-
- 
 def split_data(df, test_size=0.2):
     X = df.drop("Diabetic", axis=1) 
     y = df["Diabetic"] 
