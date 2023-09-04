@@ -1,7 +1,9 @@
 name: Manually trigger an Azure Machine Learning job
 
 on:
+  # exiting code 
   workflow_dispatch:
+  # new code
   pull_request:
     branches: [ main ]
 
