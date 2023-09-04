@@ -6,8 +6,8 @@ on:
     branches: [main]
  
 env:
-  workspace-name: myWorkspace # name of the Azure Machine Learning workspace test
-  resource-group: myResourceGroup # name of the Azure resource group
+  workspace-name: mlpromptflow # name of the Azure Machine Learning workspace test
+  resource-group: ah-openai-rg # name of the Azure resource group
  
 permissions:
   id-token: write
