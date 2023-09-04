@@ -10,7 +10,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split 
 from mlflow.sklearn import autolog 
 
-# define functions
 def main(args):
     # TO DO: enable autologging
     autolog()
@@ -38,7 +37,6 @@ def get_csvs_df(path):
 from sklearn.model_selection import train_test_split
  
 def split_data(df, test_size=0.2):
-    # split data into train and test sets 
     X = df.drop("Diabetic", axis=1) 
     y = df["Diabetic"] 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -67,7 +65,6 @@ def parse_args():
     # return args
     return args
 
-# run script
 if __name__ == "__main__":
     # add space in logs
     print("\n\n")
