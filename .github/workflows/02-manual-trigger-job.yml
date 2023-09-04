@@ -63,7 +63,7 @@ jobs:
        args: --severity-threshold=hig
   train:
     runs-on: ubuntu-latest
-    needs: [unit-test]
+    needs: [security]
     environment: 
       name: dev
     steps:
