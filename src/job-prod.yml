@@ -11,5 +11,5 @@ inputs:
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 compute: azureml:andrehecluster
-experiment_name: diabetes-classification-experiment
+experiment_name: diabetes-classification-production
 description: Train a classification model to predict diabetes
