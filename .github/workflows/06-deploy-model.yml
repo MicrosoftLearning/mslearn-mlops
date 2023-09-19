@@ -1,0 +1,74 @@
+name: Deploy Model
+ 
+on:
+  pull_request_target:
+    types: [labeled]
+ 
+env:
+  workspace-name: mlpromptflow # name of the Azure Machine Learning workspace
+  resource-group: ah-openai-rg # name of the Azure resource group
+  job-name: jolly_garage_17qg9qprnf # name of the job that contains the model
+  model-name: mlops-model # name of the model
+ 
+permissions:
+  id-token: write
+  contents: read
+ 
+jobs:
+  register-model:
+    if: github.event.label.name == 'register-model'
+    name: Register Model
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@main
+      - name: Install az ml extension
+        run: az extension add -n ml -y
+      - name: "Az CLI login"
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Trigger Azure ML job
+        run: az ml model create --name ${{ env.model-name }} --path azureml://jobs/${{ env.job-name }}/outputs/artifacts/paths/model/ --type mlflow_model --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
+  create-endpoint:
+    name: Create Endpoint
+    if: github.event.label.name == 'create-endpoint'
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@main
+      - name: Install az ml extension
+        run: az extension add -n ml -y
+      - name: "Az CLI login"
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Trigger Azure ML job
+        run: az ml online-endpoint create -f src/create-endpoint.yml --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
+  deploy-model:
+    name: Deploy Model
+    if: github.event.label.name == 'deploy-model'
+    runs-on: ubuntu-latest
+    environment:
+      name: prod
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@main
+      - name: Install az ml extension
+        run: az extension add -n ml -y
+      - name: "Az CLI login"
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Trigger Azure ML job
+        run:  az ml online-deployment create -f src/deploy-endpoint.yml --all-traffic --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
