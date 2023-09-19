@@ -7,7 +7,7 @@ on:
 env:
   workspace-name: mlpromptflow # name of the Azure Machine Learning workspace
   resource-group: ah-openai-rg # name of the Azure resource group
-  job-name: jolly_garage_17qg9qprnf # name of the job that contains the model
+  job-name: teal_van_592njk76pq # name of the job that contains the model
   model-name: mlops-model # name of the model
  
 permissions:
