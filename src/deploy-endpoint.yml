@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
 name: mlflow-deployment
-endpoint_name: mlflow-endpoint-mlops1 # Name of the endpoint to deploy the model to
+endpoint_name: endpoint-mlops1 # Name of the endpoint to deploy the model to
 model: azureml:mlops-model:1
 instance_type: Standard_D4_v3
 instance_count: 1
