@@ -1,0 +1,99 @@
+name: Deploy
+ 
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+ 
+env:
+  workspace-name: mlpromptflow # name of the Azure Machine Learning workspace test
+  resource-group: ah-openai-rg # name of the Azure resource group
+ 
+permissions:
+  id-token: write
+  contents: read
+ 
+jobs:
+  linting:
+    name: linting
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Use Python version 3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.8'
+    - name: Install Flake8
+      run: |
+        python -m pip install flake8
+    - name: Run linting tests
+      run: | 
+        flake8 src/model/
+  unit-test:
+    name: unit-test
+    runs-on: ubuntu-latest
+    needs: [linting]
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@main
+    - name: Use Python version 3.8
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.8'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt 
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run unit tests
+      run: | 
+        pytest tests/test_train.py
+  security: # new job for Snyk
+    runs-on: ubuntu-latest
+    needs: [unit-test]
+    name: Snyk scan
+    steps:
+    - uses: actions/checkout@master
+    - name: Snyk scan
+      uses: snyk/actions/python-3.8@master
+      env:
+       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+       args: --severity-threshold=high
+  train-dev:
+    runs-on: ubuntu-latest
+    needs: [security]
+    environment: 
+      name: dev
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@main
+      - name: Install az ml extension
+        run: az extension add -n ml -y
+      - name: "Az CLI login"
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Trigger Azure ML job
+        run: az ml job create --file src/job.yml --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }}
+  train-prod:
+    runs-on: ubuntu-latest
+    needs: [train-dev]
+    environment:
+      name: prod
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@main
+      - name: Install az ml extension
+        run: az extension add -n ml -y
+      - name: "Az CLI login"
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Trigger Azure ML job
+        run: az ml job create --file src/job-prod.yml --workspace-name ${{ env.workspace-name }} --resource-group ${{ env.resource-group }} --stream # output job logs to the console
