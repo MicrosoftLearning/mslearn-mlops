@@ -2,6 +2,6 @@ $schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.sch
 name: mlflow-deployment
 endpoint_name: mlflow-endpoint-mlops # Name of the endpoint to deploy the model to
 model: azureml:mlops-model:1
-instance_type: Standard_DS3_v2
+instance_type: Standard_D4_v3
 instance_count: 1
 initial_delay: 90
