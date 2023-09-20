@@ -17,8 +17,8 @@ jobs:
   train-dev:
     runs-on: ubuntu-latest
     # needs: [security]
-    # environment: 
-    #  name: dev
+    environment: 
+      name: dev
     steps:
       - name: Check out repo
         uses: actions/checkout@main
