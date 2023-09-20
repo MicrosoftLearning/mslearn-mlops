@@ -10,6 +10,6 @@ inputs:
     path: azureml:diabetes-prod-folder:1
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: azureml:andrehecluster
+compute: azureml:mlopsCompute003
 experiment_name: diabetes-classification-production
 description: Train a classification model to predict diabetes
