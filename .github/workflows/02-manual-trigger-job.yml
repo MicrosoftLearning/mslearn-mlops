@@ -15,5 +15,9 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Register the dataset
+      run: az ml data register --file experimentation/data/diabetes-dev.csv --name diabetes-dev
+    - name: Trigger Azure Machine Learning job
+      run: az ml job create --file src/job.yml
 
 
