@@ -11,7 +11,7 @@ jobs:
     - name: Install az ml extension
       run: az extension add -n ml -y
     - name: Azure login
-      run: az login --service-principal -u ${{CLIENT_ID}} -p ${{CLIENT_SECRET}} --tenant ${{TENANT_ID}}
+      run: az login --service-principal -u ${{secrets.CLIENT_ID}} -p ${{secrets.CLIENT_SECRET}} --tenant ${{secrets.TENANT_ID}}
     - name: Register the dataset
       run: az ml data register --file experimentation/data/diabetes-dev.csv --name diabetes-dev
     - name: Trigger Azure Machine Learning job
