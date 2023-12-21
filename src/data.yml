@@ -1,5 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/data.schema.json
 name: local-file-diabetes
 description: Data asset created from local file.
+version: 1
 type: uri_file
-path: experimentation/data/diabetes-dev.csv
+path: https://leonardsaccount.blob.core.windows.net/leonardsfilesystem/diabetes-dev.csv
