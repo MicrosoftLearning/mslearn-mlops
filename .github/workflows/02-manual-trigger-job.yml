@@ -14,7 +14,5 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-    - name: Start compute
-      run: az ml compute start --name smolboi --resource-group $RESOURCE_GROUP --workspace-name $WORKSPACE_NAME
     - name: Trigger Azure Machine Learning job
       run: az ml job create --file src/job.yml --resource-group $RESOURCE_GROUP --workspace-name $WORKSPACE_NAME
