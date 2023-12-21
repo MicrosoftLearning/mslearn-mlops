@@ -5,11 +5,12 @@ command: >-
   --training_data ${{ inputs.training_data }}
   --reg_rate ${{ inputs.reg_rate }}
 inputs:
+  # Read from registered data asset
   training_data: 
-    type: uri_folder 
-    path: experimentation/data/diabetes-dev.csv
+    type: mltable
+    path: https://leonardazureml8987352045.blob.core.windows.net/azureml-blobstore-c05785bf-52a3-48f7-b1ff-7c9b78ea4f8a/UI/2023-12-21_074604_UTC/diabetes-dev.csv
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: azureml:small
+compute: azureml:smolboi
 experiment_name: mlops-example
 description: Trains a classification model on the diabetes dataset.
