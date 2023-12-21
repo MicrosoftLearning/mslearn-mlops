@@ -13,7 +13,7 @@ jobs:
     - name: Azure login
       run: az login --service-principal -u ${{secrets.CLIENT_ID}} -p ${{secrets.CLIENT_SECRET}} --tenant ${{secrets.TENANT_ID}}
     - name: Register the dataset
-      run: az ml data create --path ./experimentation/data/diabetes-dev.csv --name diabetes-dev --workspace-name leonardazureml --type uri_file
+      run: az ml data create --file src/data.yml --workspace-name leonardazureml
     - name: Trigger Azure Machine Learning job --workspace-name leonardazureml
       run: az ml job create --file src/job.yml
 
