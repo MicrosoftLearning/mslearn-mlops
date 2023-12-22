@@ -14,5 +14,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
+#    - name: Register the data asset
+#      run: az ml data create --file src/data.yml --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }}
     - name: Trigger Azure Machine Learning job
       run: az ml job create --file src/job.yml --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }}

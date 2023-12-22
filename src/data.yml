@@ -3,4 +3,4 @@ name: local-file-diabetes
 description: Data asset created from local file.
 version: 1
 type: uri_file
-path: https://leonardsaccount.blob.core.windows.net/leonardsfilesystem/diabetes-dev.csv
+path: https://leonardazureml8987352045.blob.core.windows.net/data-export/diabetes-dev.csv
