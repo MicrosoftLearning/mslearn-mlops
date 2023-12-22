@@ -7,8 +7,8 @@ command: >-
 inputs:
   # Read from registered data asset
   training_data: 
-    type: mltable
-    path: https://leonardazureml8987352045.blob.core.windows.net/data-export/diabetes-dev.csv
+    type: uri_folder
+    path: azureml:diabetes
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 compute: azureml:smolboi
