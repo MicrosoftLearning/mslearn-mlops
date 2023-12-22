@@ -7,7 +7,7 @@ command: >-
 inputs:
   # Read from registered data asset
   training_data: 
-    type: uri_folder
+    type: mltable
     path: azureml:diabetes:1
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
