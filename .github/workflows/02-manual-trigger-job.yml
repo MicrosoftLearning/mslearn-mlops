@@ -5,9 +5,6 @@ on: [push]
 jobs:
   train:
     runs-on: ubuntu-latest
-    env:
-      RESOURCE_GROUP: leonard_enablement
-      WORKSPACE_NAME: leonardazureml
     steps:
     - name: Check out repo
       uses: actions/checkout@main
@@ -20,13 +17,13 @@ jobs:
     - name: Start compute instance if not already running
       run: |
         # Get the state of the compute instance
-        state=$(az ml compute show --name smolboi --resource-group $RESOURCE_GROUP --workspace-name $WORKSPACE_NAME --query state -o tsv)
+        state=$(az ml compute show --name smolboi --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }} --query state -o tsv)
         # If the compute instance is not running, start it
         if [ "$state" != "Running" ]; then
-          az ml compute start --name smolboi --resource-group $RESOURCE_GROUP --workspace-name $WORKSPACE_NAME
+          az ml compute start --name smolboi --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }}
         fi
     - name: Trigger Azure Machine Learning job
-      run: az ml job create --file src/job.yml --resource-group $RESOURCE_GROUP --workspace-name $WORKSPACE_NAME
+      run: az ml job create --file src/job.yml --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }}
     - name: Stop compute instance
       run: |
-        az ml compute stop --name smolboi --resource-group $RESOURCE_GROUP --workspace-name $WORKSPACE_NAME
+        az ml compute stop --name smolboi --resource-group ${{ vars.RESOURCE_GROUP }} --workspace-name ${{ vars.WORKSPACE_NAME }}
