@@ -5,6 +5,9 @@ on: [push]
 jobs:
   train:
     runs-on: ubuntu-latest
+    env:
+      RESOURCE_GROUP: leonard_enablement
+      WORKSPACE_NAME: leonardazureml
     steps:
     - name: Check out repo
       uses: actions/checkout@main
