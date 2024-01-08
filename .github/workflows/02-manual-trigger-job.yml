@@ -1,6 +1,10 @@
-name: Manually trigger an Azure Machine Learning job
+name: Trigger an Azure Machine Learning job on changes to main branch
 
-on: [push]
+# Trigger only on push to main branch
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   train:
