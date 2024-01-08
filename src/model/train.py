@@ -136,6 +136,8 @@ if __name__ == "__main__":
     # parse args
     args = parse_args()
 
+    print("Dataset path:", args.training_data)
+
     # run main function
     main(args)
 
