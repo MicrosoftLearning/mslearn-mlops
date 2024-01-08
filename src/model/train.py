@@ -23,10 +23,11 @@ def main(args):
     X_train, X_test, y_train, y_test = split_data(df)
 
     # train model
-    train_model(args.reg_rate, X_train, X_test)
+    train_model(args.reg_rate, X_train, y_train)
 
 
 def get_csvs_df(path):
+    print(os.getcwd())
     if not os.path.exists(path):
         raise RuntimeError(f"Cannot use non-existent path provided: {path}")
     csv_files = glob.glob(f"{path}")
@@ -86,16 +87,6 @@ def split_data(
     Returns:
         A tuple containing the training features, testing features, training
         labels, and testing labels.
-
-    Example usage:
-
-    >>> X_train, X_test, y_train, y_test = split_data(
-    >>>     df,
-    >>>     test_size=0.3,
-    >>>     random_state=10,
-    >>>     feature_cols=['Age', 'BMI'],
-    >>>     label_col='Diabetic'
-    >>> )
 
     """
 
