@@ -8,7 +8,7 @@ inputs:
   # Read from registered data asset
   training_data: 
     type: uri_file
-    path: azureml://datastores/data/paths/diabetes-dev.csv
+    path: azureml://datastores/azureml-filestore-c05785bf-52a3-48f7-b1ff-7c9b78ea4f8a/diabetes-dev.csv
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
 compute: azureml:hpc
