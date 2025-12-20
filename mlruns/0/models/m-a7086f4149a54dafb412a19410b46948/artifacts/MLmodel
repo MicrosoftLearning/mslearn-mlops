@@ -1,0 +1,33 @@
+artifact_path: /Users/rafallabisz/Documents/repos/mslearn-mlops/mlruns/0/models/m-a7086f4149a54dafb412a19410b46948/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.14.2
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+is_signature_from_type_hint: false
+mlflow_version: 3.7.0
+model_id: m-a7086f4149a54dafb412a19410b46948
+model_size_bytes: 995
+model_uuid: m-a7086f4149a54dafb412a19410b46948
+prompts: null
+run_id: b3073101fa814eb9bdff4b6086c5fb6f
+signature:
+  inputs: '[{"type": "long", "name": "Pregnancies", "required": true}, {"type": "long",
+    "name": "PlasmaGlucose", "required": true}, {"type": "long", "name": "DiastolicBloodPressure",
+    "required": true}, {"type": "long", "name": "TricepsThickness", "required": true},
+    {"type": "long", "name": "SerumInsulin", "required": true}, {"type": "double",
+    "name": "BMI", "required": true}, {"type": "double", "name": "DiabetesPedigree",
+    "required": true}, {"type": "long", "name": "Age", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "int64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2025-12-20 12:39:33.354630'
