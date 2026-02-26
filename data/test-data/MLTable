@@ -1,0 +1,5 @@
+type: mltable
+paths:
+  - file: ./diabetes-test.parquet
+transformations:
+  - read_parquet
