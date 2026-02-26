@@ -44,7 +44,7 @@ By completing this challenge, you'll learn how to:
 
 ## Instructions
 
-In the **.github/workflows** folder, you'll find the `02-manual-trigger.yml` file. The file defines a GitHub Action which can be manually triggered. The workflow checks out the repo onto the runner, installs the Azure Machine Learning extension for the CLI (v2), and logs in to Azure using the `AZURE_CREDENTIALS` secret.
+In the **.github/workflows** folder, you'll find the `manual-trigger.yml` file. The file defines a GitHub Action which can be manually triggered. The workflow checks out the repo onto the runner, installs the Azure Machine Learning extension for the CLI (v2), and logs in to Azure using the `AZURE_CREDENTIALS` secret.
 
 - Create a service principal, using the Cloud Shell in the Azure portal, which has contributor access to your resource group. 
     
@@ -76,7 +76,7 @@ The output of the service principal which you need to paste into the <b>Value</b
 </pre>
 </details>
 
-- Edit the `02-manual-trigger.yml` workflow to trigger the Azure Machine Learning job you defined in challenge 1.
+- Edit the `manual-trigger.yml` workflow to trigger the Azure Machine Learning job you defined in challenge 1.
 
 <details>
 <summary>Hint</summary>
