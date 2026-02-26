@@ -157,7 +157,7 @@ After converting a notebook to a script, you may want to further refine it. One 
 
     ```
     cd mslearn-mlops/experimentation/
-    python train-model-parameters.py --training_data ./data/diabetes-data/diabetes.csv
+    python train-model-parameters.py --training_data ../data/diabetes-data/diabetes.csv
     ```
 
 The script should successfully run and as a result, the output should show the accuracy and AUC of the trained model.
