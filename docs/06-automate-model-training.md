@@ -25,21 +25,42 @@ You need:
 - An [Azure subscription](https://azure.microsoft.com/free?azure-portal=true) in which you have administrative-level access.
 - A [GitHub](https://github.com/) account with permission to create repositories and configure GitHub Actions.
 
-If you completed previous labs in this module, you can reuse the same Azure Machine Learning workspace and resource group. Otherwise, run the `infra/setup.sh` script from an Azure Cloud Shell or local environment to provision a new workspace before you begin.
+## Provision an Azure Machine Learning workspace
 
-## Prepare your GitHub repository and Azure Machine Learning workspace
+First, you create the Azure Machine Learning workspace and compute resources you'll use from your GitHub workflows.
 
-First, you make sure you have a GitHub repository with this lab content and an Azure Machine Learning workspace ready for automation.
+1. In a browser, open the Azure portal at `https://portal.azure.com/` and sign in with your Microsoft account.
+1. Select the **[>_]** (**Cloud Shell**) button at the top of the page to open Cloud Shell, and choose **Bash** if you're prompted.
+1. Make sure the correct subscription is selected and that **No storage account required** is selected. Then select **Apply**.
+1. In the Cloud Shell terminal, clone the original lab repo and run the setup script:
+
+		```azurecli
+		rm -r mslearn-mlops -f
+		git clone https://github.com/MicrosoftLearning/mslearn-mlops.git mslearn-mlops
+		cd mslearn-mlops/infra
+		./setup.sh
+		```
+
+		> Ignore any messages that say that extensions couldn't be installed.
+
+1. Wait for the script to finish. It creates a resource group, an Azure Machine Learning workspace, and compute resources.
+1. In the Azure portal, go to **Resource groups** and open the `rg-ai300-...` resource group that was created.
+1. Select the Azure Machine Learning workspace (for example, `mlw-ai300-...`) and then select **Launch studio** to open Azure Machine Learning studio.
+
+With a workspace in place, you can now create your own GitHub repository and configure secure access.
+
+## Create your GitHub repository from the template
+
+Next, you create your own GitHub repository from the original lab repo so you can use GitHub Actions.
 
 1. In a browser, go to `https://github.com/MicrosoftLearning/mslearn-mlops`.
-1. In the upper-right corner, select **Fork** to create a copy of the repository in your own GitHub account.
-1. In your forked repository, ensure that the **Actions** tab is enabled. If GitHub asks you to enable workflows, confirm the setting.
-1. Note the clone URL for your fork (for example, `https://github.com/<your-alias>/mslearn-mlops.git`). You use this URL when you work with the repository locally or from a development environment.
-1. In a separate browser tab, open the Azure portal at `https://portal.azure.com/` and sign in with your Microsoft account.
-1. Navigate to the Azure Machine Learning workspace you created in earlier labs (for example, **mlw-ai300-...**). If you have not created one yet, follow the "Provision an Azure Machine Learning workspace" section from a previous lab to create a workspace and compute resources.
-1. On the workspace **Overview** page, select **Launch studio** to open Azure Machine Learning studio in a new tab.
+1. In the upper-right corner, select **Use this template** and then choose **Create a new repository**.
+1. In the **Owner** field, select your GitHub account. In the **Repository name** field, enter a name such as `mslearn-mlops`.
+1. Select **Create repository from template**.
+1. In your new repository that was created from the template, go to the **Actions** tab and enable GitHub Actions if prompted.
+1. Note the clone URL for your new repository (for example, `https://github.com/<your-alias>/mslearn-mlops.git`). You use this URL when you work with the repository locally or from a development environment.
 
-With a forked repository and workspace in place, you can now connect GitHub securely to Azure.
+With your template-based repository in place, you can now connect GitHub securely to Azure.
 
 ## Configure GitHub integration with Azure Machine Learning
 
@@ -57,7 +78,7 @@ To let GitHub Actions authenticate to Azure Machine Learning, you use a service 
 		```
 
 1. Copy the full JSON output of the command to a safe location. You use the values in the next steps and in later challenges.
-1. In your forked GitHub repository, navigate to **Settings** > **Secrets and variables** > **Actions**.
+1. In the GitHub repository you created from the template, navigate to **Settings** > **Secrets and variables** > **Actions**.
 1. Select **New repository secret**.
 1. Enter `AZURE_CREDENTIALS` as the **Name** of the secret.
 1. Paste the JSON output from the `az ad sp create-for-rbac` command into the **Value** field and select **Add secret**.
@@ -87,7 +108,7 @@ Now that you understand the network options, you are ready to automate a trainin
 
 In this section, you connect your GitHub workflow to Azure Machine Learning and run a command job to train a model. The workflow uses the `AZURE_CREDENTIALS` secret you created earlier.
 
-1. Clone your forked `mslearn-mlops` repository to a development environment where you can edit files and push changes back to GitHub.
+1. Clone your `mslearn-mlops` repository that you created from the template to a development environment where you can edit files and push changes back to GitHub.
 1. In the cloned repository, locate the `.github/workflows/manual-trigger.yml` workflow file.
 1. Open `manual-trigger.yml` and review the existing steps. The workflow should:
 		- Check out the repository code.
@@ -124,7 +145,7 @@ Running workflows manually is useful for initial testing, but in a team environm
 					- main
 		```
 
-1. Commit the updated workflow file and push it to the **main** branch of your fork.
+1. Commit the updated workflow file and push it to the **main** branch of your repository.
 1. In GitHub, go to **Settings** > **Branches** and select **Add branch protection rule**.
 1. Configure a rule for the **main** branch that prevents direct pushes. At a minimum, select:
 		- **Branch name pattern**: `main`.
@@ -160,5 +181,5 @@ When you finish exploring Azure Machine Learning and GitHub Actions, you should 
 1. Select the **rg-ai300-...** resource group that contains your Azure Machine Learning workspace.
 1. At the top of the **Overview** page for your resource group, select **Delete resource group**.
 1. Enter the resource group name to confirm you want to delete it, and select **Delete**.
-1. In GitHub, you can also delete your fork of the `mslearn-mlops` repository if you no longer need the workflows or sample code.
+1. In GitHub, you can also delete the repository you created from the `mslearn-mlops` template if you no longer need the workflows or sample code.
 

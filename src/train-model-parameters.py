@@ -1,6 +1,8 @@
-# import libraries
+// import libraries
 import mlflow
 import argparse
+import glob
+import os
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -22,11 +24,18 @@ def main(args):
     # evaluate model
     eval_model(model, X_test, y_test)
 
-# function that reads the data
 def get_data(path):
+    # function that reads the data from a file or a folder of CSV files
     print("Reading data...")
-    df = pd.read_csv(path)
-    
+
+    if os.path.isdir(path):
+        csv_files = glob.glob(os.path.join(path, "*.csv"))
+        if not csv_files:
+            raise RuntimeError(f"No CSV files found in provided data path: {path}")
+        df = pd.concat((pd.read_csv(f) for f in csv_files), ignore_index=True)
+    else:
+        df = pd.read_csv(path)
+
     return df
 
 # function that splits the data

@@ -24,7 +24,7 @@ You'll need an [Azure subscription](https://azure.microsoft.com/free?azure-porta
 
 ## Review the existing development environment script
 
-In earlier labs, you used a shell script to quickly create an Azure Machine Learning workspace and supporting resources for experimentation. In this section, you review that script and identify what it currently provisions.
+You can manually create necessary resources and assets to work with Azure Machine Learning through the portal. However, when you want to easily track and automate your work, working with CLI commands is easier. You can combine CLI commands in a shell script. In this section, you review a shell script and identify what it provisions.
 
 1. In a browser, open the Azure portal at `https://portal.azure.com/`, signing in with your Microsoft account.
 1. Select the \[>_] (*Cloud Shell*) button at the top of the page to the right of the search box. This opens a Cloud Shell pane at the bottom of the portal.
@@ -234,6 +234,3 @@ When you finish exploring Azure Machine Learning, you should delete the resource
 1. Select the **rg-ai300-...** resource group that was created by the original `setup.sh` script.
 1. At the top of the **Overview** page for your resource group, select **Delete resource group**.
 1. Enter the resource group name to confirm you want to delete it, and select **Delete**.
-
-
-

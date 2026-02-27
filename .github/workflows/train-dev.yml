@@ -1,0 +1,106 @@
+name: Train model in dev (PR)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'src/train-model-parameters.py'
+      - 'src/job.yml'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  train-dev:
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Sign in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Install Azure ML CLI
+        run: |
+          az extension add -n ml -y
+
+      - name: Detect Azure ML workspace
+        id: detect
+        run: |
+          RG_NAME=$(az group list --query "[?starts_with(name,'rg-ai300-l')].name | [0]" -o tsv)
+          if [ -z "$RG_NAME" ]; then
+            echo "No resource group starting with rg-ai300-l found." >&2
+            exit 1
+          fi
+
+          WS_NAME=$(az ml workspace list --resource-group "$RG_NAME" --query "[?starts_with(name,'mlw-ai300-l')].name | [0]" -o tsv)
+          if [ -z "$WS_NAME" ]; then
+            echo "No workspace starting with mlw-ai300-l found in $RG_NAME." >&2
+            exit 1
+          fi
+
+          az configure --defaults group="$RG_NAME" workspace="$WS_NAME"
+
+          echo "resource_group=$RG_NAME" >> "$GITHUB_OUTPUT"
+          echo "workspace=$WS_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Run training job in dev and capture logs
+        id: train
+        run: |
+          JOB_NAME="diabetes-train-dev-${{ github.run_id }}"
+          echo "Running Azure ML job: $JOB_NAME"
+          az ml job create \
+            -f src/job.yml \
+            --name "$JOB_NAME" \
+            --set inputs.training_data=azureml:diabetes-dev-folder@latest \
+            --stream | tee training_output.log
+
+      - name: Extract dev metrics from logs
+        id: parse-metrics
+        run: |
+          if [ ! -f training_output.log ]; then
+            echo "No training_output.log found to parse metrics." >&2
+            exit 1
+          fi
+
+          ACC=$(grep -o "Accuracy: .*" training_output.log | tail -n 1 | awk '{print $2}') || true
+          AUC=$(grep -o "AUC: .*" training_output.log | tail -n 1 | awk '{print $2}') || true
+
+          echo "Dev accuracy: $ACC"
+          echo "Dev AUC: $AUC"
+
+          echo "dev_accuracy=$ACC" >> "$GITHUB_OUTPUT"
+          echo "dev_auc=$AUC" >> "$GITHUB_OUTPUT"
+
+      - name: Comment dev metrics on pull request
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const acc = '${{ steps.parse-metrics.outputs.dev_accuracy }}';
+            const auc = '${{ steps.parse-metrics.outputs.dev_auc }}';
+
+            const prNumber = context.payload.pull_request.number;
+
+            let body = '✅ Dev training workflow completed.';
+            if (acc || auc) {
+              body += '\n\n**Dev evaluation metrics**';
+              if (acc) body += `\n- Accuracy: ${acc}`;
+              if (auc) body += `\n- AUC: ${auc}`;
+            } else {
+              body += '\n\nMetrics could not be parsed from logs. Check the Azure Machine Learning job run for details.';
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body,
+            });
