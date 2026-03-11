@@ -12,8 +12,11 @@ To complete these exercises, you’ll need a Microsoft Azure subscription. If yo
 
 ## Labs
 
-{% assign labs = site.pages | where_exp:"page", "page.url contains '/docs/'" %}
-| Lab | Link |
-| --- | --- | 
-{% for activity in labs  %}| {{ activity.lab.title }} | [Open lab]({{ site.github.url }}{{ activity.url }}) |
+{% assign labs = site.pages | where_exp:"page", "page.url contains '/docs'" %}
+{% for activity in labs  %}
+<hr>
+### [{{ activity.lab.title }}]({{ site.github.url }}{{ activity.url }})
+
+{{ activity.lab.description }}
+
 {% endfor %}
