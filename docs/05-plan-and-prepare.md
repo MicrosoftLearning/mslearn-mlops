@@ -1,9 +1,9 @@
 ---
 lab:
-		title: 'Plan and prepare an MLOps solution with Azure Machine Learning'
-		description: 'Design dev and prod environments and plan Azure CLI automation to provision workspaces, registries, and data assets.'
-		level: 300
-		duration: 45 minutes
+    title: 'Plan and prepare an MLOps solution with Azure Machine Learning'
+    description: 'Design dev and prod environments and plan Azure CLI automation to provision workspaces, registries, and data assets.'
+    level: 300
+    duration: 45 minutes
 ---
 
 # Plan and prepare an MLOps solution with Azure Machine Learning

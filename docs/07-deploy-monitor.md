@@ -1,9 +1,9 @@
 ---
 lab:
-	title: 'Deploy and monitor a model in Azure Machine Learning'
-	description: 'Use GitHub Actions pull requests, environments, and comment triggers to train models in dev and prod, deploy to a managed online endpoint, and configure Azure Machine Learning model monitoring.'
-	level: 300
-	duration: 60 minutes
+    title: 'Deploy and monitor a model in Azure Machine Learning'
+    description: 'Use GitHub Actions pull requests, environments, and comment triggers to train models in dev and prod, deploy to a managed online endpoint, and configure Azure Machine Learning model monitoring.'
+    level: 300
+    duration: 60 minutes
 ---
 
 # Deploy and monitor a model in Azure Machine Learning

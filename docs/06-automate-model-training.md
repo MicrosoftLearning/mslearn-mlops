@@ -1,9 +1,9 @@
 ---
 lab:
-		title: 'Automate model training with GitHub Actions'
-		description: 'Securely integrate GitHub with Azure Machine Learning and automate model training with GitHub Actions workflows.'
-		level: 300
-		duration: 45 minutes
+    title: 'Automate model training with GitHub Actions'
+    description: 'Securely integrate GitHub with Azure Machine Learning and automate model training with GitHub Actions workflows.'
+    level: 300
+    duration: 45 minutes
 ---
 
 # Automate model training with GitHub Actions
