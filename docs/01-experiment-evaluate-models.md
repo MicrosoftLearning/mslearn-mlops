@@ -142,14 +142,6 @@ Now that you have done your initial exploration, you can also take full control 
 
     > **Note:** When you train a model, the cell's output will show a link to the job run. If the link returns an error, you can still review the job run by selecting **Jobs** on the left side panel.
 
-## Create a pipeline to evaluate models and submit from a notebook
-
-Now that you have all the necessary resources, you can run the notebook to retrieve the built-in responsible AI components, create a pipeline, and submit the pipeline to generate a responsible AI dashboard.
-
-1. Open the **experimentation/Create Responsible AI dashboard.ipynb** notebook.
-1. Verify that the notebook uses the **Python 3.10 - AzureML** kernel.
-1. Run all cells in the notebook.
-
 ## Delete Azure resources
 
 When you finish exploring Azure Machine Learning, you should delete the resources you've created to avoid unnecessary Azure costs.
