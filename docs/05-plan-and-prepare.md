@@ -46,6 +46,9 @@ You can manually create necessary resources and assets to work with Azure Machin
 		code setup.sh
 		```
 
+		> [!NOTE]
+		> If the `code` command is not available, you are in the new Cloud Shell experience. Switch to Classic Cloud Shell by selecting **Switch to Classic Cloud Shell** in the toolbar and selecting **Confirm**. Then run the commands again.
+
 1. Review the script and identify the resources that are created for your current **development** environment:
 		- A resource group with a randomized suffix, for example `rg-ai300-l...`.
 		- An Azure Machine Learning workspace, for example `mlw-ai300-l...`.
@@ -73,7 +76,7 @@ For this lab, imagine the following target architecture:
 - **Dev workspace** for experimentation:
 	- Resource group: `rg-ai300-dev-<suffix>`
 	- Workspace: `mlw-ai300-dev-<suffix>`
-	- Data asset: `diabetes-dev-folder` that points to the sample data in the `experimentation/data` folder.
+	- Data asset: `diabetes-dev-folder` that points to the sample data in the `data/diabetes-data` folder.
 - **Prod workspace** for production training and deployment:
 	- Resource group: `rg-ai300-prod-<suffix>`
 	- Workspace: `mlw-ai300-prod-<suffix>`
@@ -153,7 +156,7 @@ Next, you map your target architecture to Azure CLI commands. Instead of running
 		az ml data create \
 			--type uri_folder \
 			--name diabetes-dev-folder \
-			--path ../experimentation/data
+			--path ../data/diabetes-data
 
 		# In the prod workspace: data asset that points to production data
 		az configure --defaults group=$PROD_RESOURCE_GROUP workspace=$PROD_WORKSPACE_NAME
@@ -170,15 +173,23 @@ By planning these commands, you've translated your architecture into concrete Az
 
 ## Optional: run your design script
 
-If you want to see your design in action, you can run the script to create the additional resources. This step is optional and will incur Azure costs while the resources exist.
+If you want to see your design in action, you can validate your script against a reference solution and then run it. This step is optional and will incur Azure costs while the resources exist.
 
-1. In the Cloud Shell terminal, make sure you're in the `infra` folder that contains your design script:
+1. In the Cloud Shell terminal, make sure you're in the `infra` folder:
 
 		```bash
 		cd mslearn-mlops/infra
 		```
 
-1. Ensure the script is executable and run it. For example, to create both dev and prod resources using the design script you created earlier:
+1. The repo includes a reference script `infra/setup-mlops-envs.sh` that shows what the complete script should look like. Compare it with your own `setup-prod-design.sh` to check your work:
+
+		```bash
+		diff setup-prod-design.sh setup-mlops-envs.sh
+		```
+
+		Review any differences and update your script if needed.
+
+1. Once you're satisfied with your script, make it executable and run it:
 
 		```bash
 		chmod +x setup-prod-design.sh
