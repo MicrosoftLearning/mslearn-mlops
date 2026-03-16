@@ -133,7 +133,7 @@ Using a notebook attached to a compute instance is ideal for experimentation and
 
 After converting a notebook to a script, you may want to further refine it. One best practice when working with scripts, is to use functions. When your script consists of functions, it's easier to unit test your code. Functions in your script will consist of blocks of code, each block performing a specific task.
 
-1. Open the **experimentation/train-model-parameters.py** script and explore its contents.
+1. Open the **src/train-model-parameters.py** script and explore its contents.
     Note that there is a main function which includes four other functions:
 
     - Read data
