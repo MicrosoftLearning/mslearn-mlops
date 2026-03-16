@@ -156,7 +156,7 @@ After converting a notebook to a script, you may want to further refine it. One 
 1. In the terminal, run the following commands:
 
     ```
-    cd mslearn-mlops/experimentation/
+    cd mslearn-mlops/src/
     python train-model-parameters.py --training_data ../data/diabetes-data/diabetes.csv
     ```
 
