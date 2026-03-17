@@ -15,5 +15,7 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
+    - name: Run Azure Machine Learning training job
+ 	    run: az ml job create -f src/job.yml --stream
 
 
