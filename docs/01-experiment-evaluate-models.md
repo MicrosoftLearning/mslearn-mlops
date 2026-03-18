@@ -14,7 +14,6 @@ In this exercise, you'll experiment to find the best classification model in thr
 
 - Start by using automated machine learning to determine the optimal algorithm and preprocessing steps for a model by performing multiple training runs in parallel.
 - Continue experimenting by training a classification model in an interactive notebook and track your work with MLflow.
-- Compare performance metrics and evaluate the Responsible AI dashboard across your trained models to select the best model.
 
 ## Before you start
 
