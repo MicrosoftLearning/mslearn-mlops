@@ -6,8 +6,8 @@ command: >-
   --reg_rate ${{inputs.reg_rate}}
 inputs:
   training_data:
-    type: uri_file
-    path: azureml:diabetes-data@latest
+    type: uri_folder
+    path: azureml:diabetes-dev-folder@latest
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
 compute: azureml:aml-cluster
