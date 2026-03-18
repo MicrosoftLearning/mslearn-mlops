@@ -57,7 +57,7 @@ jobs:
           az ml job create \
             -f src/job.yml \
             --name "$JOB_NAME" \
-            --set inputs.training_data=azureml:diabetes-prod-folder@latest \
+            --set inputs.training_data.path=azureml:diabetes-prod-folder@latest \
             --stream | tee training_output.log
 
       - name: Extract prod metrics from logs
