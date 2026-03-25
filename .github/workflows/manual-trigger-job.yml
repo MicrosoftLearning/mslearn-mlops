@@ -15,7 +15,4 @@ jobs:
       uses: azure/login@v2
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-    - name: Run Azure Machine Learning training job
-      run: az ml job create -f src/job.yml --stream --resource-group ${{vars.AZURE_RESOURCE_GROUP}} --workspace-name ${{vars.AZURE_WORKSPACE_NAME}}
-
 

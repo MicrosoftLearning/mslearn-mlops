@@ -127,6 +127,14 @@ Now you use a GitHub Actions workflow in your template-based repository that tra
 1. In your local clone, open `src/train-model-parameters.py` and review how it:
 	- Reads training data from a file or folder path.
 	- Trains a logistic regression model and logs metrics such as **Accuracy** and **AUC**.
+1. Open `src/job.yml` and replace the placeholder values for the `training_data` input so the command job uses the dev folder data asset by default:
+
+	```yml
+	inputs:
+	  training_data:
+	    type: uri_folder
+	    path: azureml:diabetes-dev-folder@latest
+	```
 1. Open `src/job.yml` and review how the Azure Machine Learning command job:
 	- Runs `train-model-parameters.py` on the `aml-cluster` compute.
 	- Uses a `training_data` input that points to the `diabetes-dev-folder` data asset by default.
