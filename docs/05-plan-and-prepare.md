@@ -101,8 +101,6 @@ Next, you map your target architecture to Azure CLI commands. Instead of running
 	code setup-prod-design.sh
 	```
 
-1. In the new `setup-prod-design.sh` file, change the first line to `#!/bin/bash` before you add any new variables or commands. The examples in this lab use Bash array and parameter expansion syntax, and the registry creation command should run from the Bash script.
-
 1. At the top of the new file, add variables for both environments and the shared registry. For example:
 
 	```bash
