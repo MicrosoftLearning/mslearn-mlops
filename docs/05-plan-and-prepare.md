@@ -122,18 +122,36 @@ Next, you map your target architecture to Azure CLI commands. Instead of running
 	REGISTRY_NAME="mlr-ai300-shared-${suffix}"
 	```
 
+1. In the `infra` folder, open `registry.yml` and review the values that define the shared registry. The Azure CLI reads this YAML file literally, so the Bash script needs to inject the dynamic registry name and primary region into the file before running the create command. In this lab, use placeholders in `registry.yml` like this:
+
+	```yml
+	name: REGISTRY_NAME_PLACEHOLDER
+	tags:
+	  description: Shared registry for approved machine learning assets across workspaces
+	location: PRIMARY_REGION_PLACEHOLDER
+	replication_locations:
+	  - location: PRIMARY_REGION_PLACEHOLDER
+	```
+
 1. Plan the commands that would create the **shared registry** in its own resource group. For example:
 
 	```azurecli
 	# Create a resource group for the shared registry
 	az group create --name $REGISTRY_RESOURCE_GROUP --location $RANDOM_REGION
 
-	# Create an Azure Machine Learning registry
+	# Render registry.yml with the dynamic values from the script
+	sed \
+		-e "s|REGISTRY_NAME_PLACEHOLDER|$REGISTRY_NAME|g" \
+		-e "s|PRIMARY_REGION_PLACEHOLDER|$RANDOM_REGION|g" \
+		registry.yml > registry.generated.yml
+
+	# Create an Azure Machine Learning registry from the rendered YAML file
 	az ml registry create \
-		--name $REGISTRY_NAME \
-		--resource-group $REGISTRY_RESOURCE_GROUP \
-		--location $RANDOM_REGION
+		--file registry.generated.yml \
+		--resource-group $REGISTRY_RESOURCE_GROUP
 	```
+
+	The primary registry region appears twice in the YAML definition: once in `location` and again in `replication_locations`. Rendering the YAML from the Bash variables keeps those values consistent.
 
 1. Plan the commands that would create the **production** resource group and workspace. They follow the same pattern as the existing dev workspace, but use the prod names:
 
