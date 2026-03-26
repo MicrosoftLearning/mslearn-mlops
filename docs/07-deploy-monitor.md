@@ -127,6 +127,14 @@ Now you use a GitHub Actions workflow in your template-based repository that tra
 1. In your local clone, open `src/train-model-parameters.py` and review how it:
 	- Reads training data from a file or folder path.
 	- Trains a logistic regression model and logs metrics such as **Accuracy** and **AUC**.
+1. Open `src/job.yml` and replace the placeholder values for the `training_data` input so the command job uses the dev folder data asset by default:
+
+	```yml
+	inputs:
+	  training_data:
+	    type: uri_folder
+	    path: azureml:diabetes-dev-folder@latest
+	```
 1. Open `src/job.yml` and review how the Azure Machine Learning command job:
 	- Runs `train-model-parameters.py` on the `aml-cluster` compute.
 	- Uses a `training_data` input that points to the `diabetes-dev-folder` data asset by default.
@@ -136,13 +144,25 @@ Now you use a GitHub Actions workflow in your template-based repository that tra
 	- Detects the resource group and workspace that the `infra/setup.sh` script created.
 	- Submits the Azure Machine Learning job defined in `src/job.yml`, overriding the `training_data` input to use the `diabetes-dev-folder` data asset.
 	- Streams the job logs, parses the **Accuracy** and **AUC** values from the output, and posts them as a comment on the pull request.
+1. In your local clone, open `.github/workflows/train-dev.yml` and add a `pull_request` trigger so the workflow only runs automatically when a pull request changes the training code:
+
+	```yml
+	on:
+	  workflow_dispatch:
+	  pull_request:
+	    branches:
+	      - main
+	    paths:
+	      - 'src/train-model-parameters.py'
+	      - 'src/job.yml'
+	```
 1. In your local clone, create a new feature branch and make a small, safe hyperparameter change. For example, adjust the default value of `--reg_rate` in `src/train-model-parameters.py`.
 1. Commit your change and push the new branch to GitHub.
 1. In GitHub, create a pull request from your feature branch into `main`.
-1. On the pull request page, observe that the **Train model in dev (PR)** workflow runs automatically because of the `pull_request` trigger, and wait for it to complete.
+1. On the pull request page, observe that the **Train model in dev** workflow runs automatically because of the `pull_request` trigger you added, and wait for it to complete.
 1. When the workflow run has finished, review the comments on the pull request. You should see a comment from the workflow that includes the dev **Accuracy** and **AUC** values from the training job.
 
-The dev workflow now validates training changes against the dev data asset and surfaces key evaluation metrics directly in the pull request so that reviewers can make an informed decision.
+The dev workflow stays manual by default and only starts running automatically for pull requests after you add the trigger. That keeps unnecessary runs out of the live repo while still letting you enable PR validation when you're ready.
 
 ## Retrain the model on prod data from a pull request comment
 
@@ -219,7 +239,7 @@ In a real system, drift or performance degradation would trigger retraining. In 
 		```
 
 1. In GitHub, create a new pull request from your `feature/drift-retrain` branch into `main`.
-1. Observe that the **Train model in dev (PR)** workflow runs automatically for the new pull request. When it completes, review the comment that shows the updated **dev** Accuracy and AUC.
+1. Observe that the **Train model in dev** workflow runs automatically for the new pull request because you added the `pull_request` trigger earlier. When it completes, review the comment that shows the updated **dev** Accuracy and AUC.
 1. If the dev metrics look acceptable, add a comment `/train-prod` on the pull request to trigger the **Train model in prod (PR comment)** workflow. When it completes, review the comment that shows the updated **prod** Accuracy and AUC.
 1. If the prod metrics also meet your expectations, add a comment `/deploy-prod` on the pull request to trigger the **Deploy model to online endpoint (PR comment)** workflow. Wait for it to complete.
 1. Finally, in Azure Machine Learning studio, go to **Endpoints** > **Real-time endpoints**, select the `diabetes-endpoint`, and use the **Test** tab to confirm that the endpoint still returns predictions after your retraining and deployment.

@@ -34,14 +34,14 @@ First, you create the Azure Machine Learning workspace and compute resources you
 1. Make sure the correct subscription is selected and that **No storage account required** is selected. Then select **Apply**.
 1. In the Cloud Shell terminal, clone the original lab repo and run the setup script:
 
-		```azurecli
-		rm -r mslearn-mlops -f
-		git clone https://github.com/MicrosoftLearning/mslearn-mlops.git mslearn-mlops
-		cd mslearn-mlops/infra
-		./setup.sh
-		```
+	```azurecli
+	rm -r mslearn-mlops -f
+	git clone https://github.com/MicrosoftLearning/mslearn-mlops.git mslearn-mlops
+	cd mslearn-mlops/infra
+	./setup.sh
+	```
 
-		> Ignore any messages that say that extensions couldn't be installed.
+	> Ignore any messages that say that extensions couldn't be installed.
 
 1. Wait for the script to finish. It creates a resource group, an Azure Machine Learning workspace, and compute resources.
 1. In the Azure portal, go to **Resource groups** and open the `rg-ai300-...` resource group that was created.
@@ -71,11 +71,11 @@ To let GitHub Actions authenticate to Azure Machine Learning, you use a service 
 1. Make sure the correct subscription is selected for your Azure Machine Learning workspace.
 1. In Cloud Shell, create a service principal that has **Contributor** access to the resource group that contains your Azure Machine Learning workspace. Replace `<service-principal-name>`, `<subscription-id>`, and `<your-resource-group-name>` with your own values before you run the command. Use a descriptive name such as `sp-mslearn-mlops-github`:
 
-		```azurecli
-		az ad sp create-for-rbac --name "<service-principal-name>" --role contributor \
-				--scopes /subscriptions/<subscription-id>/resourceGroups/<your-resource-group-name> \
-				--sdk-auth
-		```
+	```azurecli
+	az ad sp create-for-rbac --name "<service-principal-name>" --role contributor \
+			--scopes /subscriptions/<subscription-id>/resourceGroups/<your-resource-group-name> \
+			--sdk-auth
+	```
 
 1. Copy the full JSON output of the command to a safe location. You use the values in the next steps and in later challenges.
 1. In the GitHub repository you created from the template, navigate to **Settings** > **Secrets and variables** > **Actions**.
@@ -112,6 +112,14 @@ Now that you understand the network options, you are ready to automate a trainin
 In this section, you connect your GitHub workflow to Azure Machine Learning and run a command job to train a model. The workflow uses the `AZURE_CREDENTIALS` secret you created earlier.
 
 1. Clone your `mslearn-mlops` repository that you created from the template to a development environment where you can edit files and push changes back to GitHub.
+1. In the cloned repository, open `src/job.yml` and replace the placeholder values for the `training_data` input so the command job uses the single file data asset created by the setup script:
+
+	```yml
+	inputs:
+	  training_data:
+	    type: uri_file
+	    path: azureml:diabetes-data@latest
+	```
 1. In the cloned repository, locate the `.github/workflows/manual-trigger-job.yml` workflow file.
 1. Open `manual-trigger-job.yml` and review the existing steps. The workflow should:
 		- Check out the repository code.
@@ -119,10 +127,10 @@ In this section, you connect your GitHub workflow to Azure Machine Learning and 
 		- Use the `AZURE_CREDENTIALS` secret to sign in to Azure via `azure/login@v2`.
 1. At the end of the workflow, add a new step that submits the Azure Machine Learning job defined in `src/job.yml`. The command requires explicit `--resource-group` and `--workspace-name` flags, supplied from the GitHub Actions variables you created:
 
-		```yml
-		- name: Run Azure Machine Learning training job
-			run: az ml job create -f src/job.yml --stream --resource-group ${{vars.AZURE_RESOURCE_GROUP}} --workspace-name ${{vars.AZURE_WORKSPACE_NAME}}
-		```
+	```yml
+	- name: Run Azure Machine Learning training job
+		run: az ml job create -f src/job.yml --stream --resource-group ${{vars.AZURE_RESOURCE_GROUP}} --workspace-name ${{vars.AZURE_WORKSPACE_NAME}}
+	```
 
 1. Save your changes, commit them to your local repository, and push the changes to the **main** branch of your fork.
 1. In GitHub, go to the **Actions** tab for your repository.
@@ -139,13 +147,13 @@ Running workflows manually is useful for initial testing, but in a team environm
 1. In your GitHub repository, open the `.github/workflows/manual-trigger-job.yml` workflow file.
 1. Update the `on` section so that the workflow can run both manually and when a pull request targets the **main** branch. For example:
 
-		```yml
-		on:
-			workflow_dispatch:
-			pull_request:
-				branches:
-					- main
-		```
+	```yml
+	on:
+		workflow_dispatch:
+		pull_request:
+			branches:
+				- main
+	```
 
 1. Commit the updated workflow file and push it to the **main** branch of your repository.
 1. In GitHub, go to **Settings** > **Branches** and select **Add branch protection rule**.
@@ -155,18 +163,18 @@ Running workflows manually is useful for initial testing, but in a team environm
 1. Save the branch protection rule.
 1. In your local clone of the repository, create a new branch for a feature change. For example:
 
-		```bash
-		git checkout -b feature/update-parameters
-		```
+	```bash
+	git checkout -b feature/update-parameters
+	```
 
 1. Make a small, safe change to the training configuration. For example, adjust a hyperparameter value in `src/train-model-parameters.py` or in `src/job.yml`.
 1. Commit your change to the feature branch and push the branch to GitHub:
 
-		```bash
-		git add .
-		git commit -m "Adjust training parameters"
-		git push --set-upstream origin feature/update-parameters
-		```
+	```bash
+	git add .
+	git commit -m "Adjust training parameters"
+	git push --set-upstream origin feature/update-parameters
+	```
 
 1. In GitHub, create a pull request from your feature branch into **main**.
 1. On the pull request page, observe that the workflow defined in `manual-trigger-job.yml` runs automatically because of the `pull_request` trigger you added.

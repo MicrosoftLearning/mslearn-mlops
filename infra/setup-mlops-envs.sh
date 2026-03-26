@@ -82,11 +82,17 @@ az ml data create \
 echo "Creating registry resource group: $REGISTRY_RESOURCE_GROUP"
 az group create --name $REGISTRY_RESOURCE_GROUP --location $RANDOM_REGION
 
+echo "Rendering registry.yml with dynamic values..."
+sed \
+    -e "s|REGISTRY_NAME_PLACEHOLDER|$REGISTRY_NAME|g" \
+    -e "s|PRIMARY_REGION_PLACEHOLDER|$RANDOM_REGION|g" \
+    registry.yml > registry.generated.yml
+
 echo "Creating shared Azure Machine Learning registry: $REGISTRY_NAME"
 az ml registry create \
-    --name $REGISTRY_NAME \
-    --resource-group $REGISTRY_RESOURCE_GROUP \
-    --location $RANDOM_REGION
+    --file registry.generated.yml \
+    --resource-group $REGISTRY_RESOURCE_GROUP
+    
 
 # ---------------------------------------------------------------------------
 # Summary
