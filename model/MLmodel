@@ -5,7 +5,7 @@ flavors:
     loader_module: mlflow.sklearn
     model_path: model.pkl
     predict_fn: predict
-    python_version: 3.7.15
+    python_version: '3.8'
   sklearn:
     code: null
     pickled_model: model.pkl
@@ -15,11 +15,10 @@ mlflow_version: 1.30.0
 model_uuid: 580862f780fb48eda0a137857d12c9f9
 run_id: calm_garden_gzd94mfzcr
 signature:
-  inputs: '[{"name": "PatientID", "type": "integer"}, {"name": "Pregnancies", "type":
-    "integer"}, {"name": "PlasmaGlucose", "type": "integer"}, {"name": "DiastolicBloodPressure",
-    "type": "integer"}, {"name": "TricepsThickness", "type": "integer"}, {"name":
-    "DiastolicBloodPressure", "type": "integer"}, {"name": "SerumInsulin", "type":
-    "integer"}, {"name": "BMI", "type": "double"}, {"name": "DiabetesPedigree", "type":
-    "double"}, {"name": "Age", "type": "integer"}]'
+  inputs: '[{"name": "Pregnancies", "type": "integer"}, {"name": "PlasmaGlucose", "type":
+    "integer"}, {"name": "DiastolicBloodPressure", "type": "integer"}, {"name": "TricepsThickness",
+    "type": "integer"}, {"name": "SerumInsulin", "type": "integer"}, {"name": "BMI",
+    "type": "double"}, {"name": "DiabetesPedigree", "type": "double"}, {"name":
+    "Age", "type": "integer"}]'
   outputs: '[{"type": "boolean"}]'
 utc_time_created: '2023-02-15 12:46:19.119720'

@@ -74,7 +74,7 @@ To let GitHub Actions authenticate to Azure Machine Learning, you use a service 
 	```azurecli
 	az ad sp create-for-rbac --name "<service-principal-name>" --role contributor \
 			--scopes /subscriptions/<subscription-id>/resourceGroups/<your-resource-group-name> \
-			--sdk-auth
+		    --json-auth
 	```
 
 1. Copy the full JSON output of the command to a safe location. You use the values in the next steps and in later challenges.

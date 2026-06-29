@@ -1,10 +1,26 @@
 from azure.identity import DefaultAzureCredential
 from azure.ai.ml import MLClient
-from azure.ai.ml.entities import ManagedOnlineEndpoint, ManagedOnlineDeployment, Model
+from azure.ai.ml.entities import (
+    DataCollector,
+    DeploymentCollection,
+    ManagedOnlineDeployment,
+    ManagedOnlineEndpoint,
+    Model,
+)
 from azure.ai.ml.constants import AssetTypes
+from azure.core.exceptions import ResourceNotFoundError
 
 import argparse
 import datetime
+
+
+def get_data_collector() -> DataCollector:
+    return DataCollector(
+        collections={
+            "model_inputs": DeploymentCollection(enabled="true"),
+            "model_outputs": DeploymentCollection(enabled="true"),
+        }
+    )
 
 
 def parse_args():
@@ -31,19 +47,14 @@ def get_ml_client(subscription_id: str, resource_group: str, workspace: str) -> 
 
 def ensure_endpoint(ml_client: MLClient, endpoint_name: str) -> ManagedOnlineEndpoint:
     try:
-        endpoint = ml_client.online_endpoints.get(name=endpoint_name)
-        return endpoint
-    except Exception:
-        unique_suffix = datetime.datetime.now().strftime("%m%d%H%M%f")
-        name = endpoint_name or f"endpoint-{unique_suffix}"
-
+        return ml_client.online_endpoints.get(name=endpoint_name)
+    except ResourceNotFoundError:
         endpoint = ManagedOnlineEndpoint(
-            name=name,
+            name=endpoint_name,
             description="Online endpoint for MLflow diabetes model",
             auth_mode="key",
         )
-
-        return ml_client.begin_create_or_update(endpoint).result()
+        return ml_client.online_endpoints.begin_create_or_update(endpoint).result()
 
 
 def create_or_update_deployment(
@@ -63,6 +74,7 @@ def create_or_update_deployment(
         model=model,
         instance_type="Standard_D2as_v4",
         instance_count=1,
+        data_collector=get_data_collector(),
     )
 
     return ml_client.online_deployments.begin_create_or_update(deployment).result()
@@ -71,7 +83,7 @@ def create_or_update_deployment(
 def set_traffic_to_deployment(ml_client: MLClient, endpoint_name: str, deployment_name: str) -> None:
     endpoint = ml_client.online_endpoints.get(name=endpoint_name)
     endpoint.traffic = {deployment_name: 100}
-    ml_client.begin_create_or_update(endpoint).result()
+    ml_client.online_endpoints.begin_create_or_update(endpoint).result()
 
 
 def main() -> None:

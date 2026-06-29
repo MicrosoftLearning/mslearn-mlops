@@ -7,6 +7,7 @@ on:
 permissions:
   contents: read
   issues: write
+  pull-requests: write
 
 jobs:
   train-prod:
@@ -19,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ github.event.issue.number }}/head
 
       - name: Sign in to Azure
         uses: azure/login@v2
@@ -49,7 +52,7 @@ jobs:
           echo "resource_group=$RG_NAME" >> "$GITHUB_OUTPUT"
           echo "workspace=$WS_NAME" >> "$GITHUB_OUTPUT"
 
-      - name: Run training job in prod and capture logs
+      - name: Run training job in prod
         id: train
         run: |
           JOB_NAME="diabetes-train-prod-${{ github.run_id }}"
@@ -58,18 +61,44 @@ jobs:
             -f src/job.yml \
             --name "$JOB_NAME" \
             --set inputs.training_data.path=azureml:diabetes-prod-folder@latest \
-            --stream | tee training_output.log
+            --query name -o tsv
 
-      - name: Extract prod metrics from logs
-        id: parse-metrics
+          echo "job_name=$JOB_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Stream prod training job
         run: |
-          if [ ! -f training_output.log ]; then
-            echo "No training_output.log found to parse metrics." >&2
+          az ml job stream --name "${{ steps.train.outputs.job_name }}"
+
+      - name: Download prod training outputs
+        id: download
+        run: |
+          JOB_NAME="${{ steps.train.outputs.job_name }}"
+          mkdir -p downloaded-job
+          az ml job download --name "$JOB_NAME" --output-name metrics_output --download-path downloaded-job
+
+          METRICS_FILE=$(find downloaded-job -name metrics.json | head -n 1)
+          if [ -z "$METRICS_FILE" ]; then
+            echo "Downloaded files:" >&2
+            find downloaded-job -maxdepth 5 -type f | sort >&2 || true
+            echo "No metrics.json found in downloaded job outputs." >&2
             exit 1
           fi
 
-          ACC=$(grep -o "Accuracy: .*" training_output.log | tail -n 1 | awk '{print $2}') || true
-          AUC=$(grep -o "AUC: .*" training_output.log | tail -n 1 | awk '{print $2}') || true
+          STUDIO_URL=$(az ml job show --name "$JOB_NAME" --query services.Studio.endpoint -o tsv)
+
+          echo "metrics_file=$METRICS_FILE" >> "$GITHUB_OUTPUT"
+          echo "studio_url=$STUDIO_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Extract prod metrics from output artifact
+        id: parse-metrics
+        run: |
+          if [ ! -f "${{ steps.download.outputs.metrics_file }}" ]; then
+            echo "No metrics file found to parse." >&2
+            exit 1
+          fi
+
+          ACC=$(python -c "import json; print(json.load(open(r'${{ steps.download.outputs.metrics_file }}', encoding='utf-8'))['accuracy'])")
+          AUC=$(python -c "import json; print(json.load(open(r'${{ steps.download.outputs.metrics_file }}', encoding='utf-8'))['auc'])")
 
           echo "Prod accuracy: $ACC"
           echo "Prod AUC: $AUC"
@@ -83,17 +112,19 @@ jobs:
           script: |
             const acc = '${{ steps.parse-metrics.outputs.prod_accuracy }}';
             const auc = '${{ steps.parse-metrics.outputs.prod_auc }}';
+            const jobName = '${{ steps.train.outputs.job_name }}';
+            const studioUrl = '${{ steps.download.outputs.studio_url }}';
 
             const prNumber = context.issue.number;
 
             let body = '✅ Prod training workflow completed.';
-            if (acc || auc) {
-              body += '\n\n**Prod evaluation metrics**';
-              if (acc) body += `\n- Accuracy: ${acc}`;
-              if (auc) body += `\n- AUC: ${auc}`;
-            } else {
-              body += '\n\nMetrics could not be parsed from logs. Check the Azure Machine Learning job run for details.';
-            }
+            body += '\n\n**Azure ML job**';
+            body += `\n- Name: ${jobName}`;
+            if (studioUrl) body += `\n- Studio: ${studioUrl}`;
+
+            body += '\n\n**Prod evaluation metrics**';
+            body += `\n- Accuracy: ${acc}`;
+            body += `\n- AUC: ${auc}`;
 
             await github.rest.issues.createComment({
               owner: context.repo.owner,

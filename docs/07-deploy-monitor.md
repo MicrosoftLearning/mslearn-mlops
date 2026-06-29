@@ -108,7 +108,7 @@ Next, you set up GitHub so that you can run training in a dev environment and la
 	```azurecli
 	az ad sp create-for-rbac --name "<service-principal-name>" --role contributor \
 	    --scopes /subscriptions/<subscription-id>/resourceGroups/<your-resource-group-name> \
-	    --sdk-auth
+	    --json-auth
 	```
 
 1. Copy the full JSON output and save it temporarily. You'll add it as a secret in both environments.
@@ -186,8 +186,9 @@ With dev and prod training complete and reviewed, you're ready to deploy the mod
 
 1. In your local clone, open `src/deploy_to_online_endpoint.py` and review how it:
 	- Connects to your Azure Machine Learning workspace by using `DefaultAzureCredential` and `MLClient`.
-	- Ensures that an online endpoint (for example, `diabetes-endpoint`) exists or creates it if needed.
+	- Ensures that an online endpoint (for example, `diabetes-endpoint-<suffix>`) exists or creates it if needed.
 	- Creates or updates a deployment (for example, `blue`) that uses the MLflow model in the local `model` folder.
+	- Enables model input and output data collection on the deployment so that monitoring can use live inference data.
 	- Directs 100% of endpoint traffic to the specified deployment and prints the scoring URI.
 1. Review the workflow at `.github/workflows/deploy-prod.yml` to see how it:
 	- Listens for a `/deploy-prod` comment on a pull request.
@@ -196,7 +197,31 @@ With dev and prod training complete and reviewed, you're ready to deploy the mod
 	- Runs `deploy_to_online_endpoint.py` with the detected values to deploy the MLflow model to a managed online endpoint.
 1. On your pull request, add a comment that contains `/deploy-prod` on its own line.
 1. In the **Actions** tab, watch the **Deploy model to online endpoint (PR comment)** workflow run and wait for it to complete successfully.
-1. When the workflow has finished, review the new comment on the pull request that confirms the deployment. Then, in Azure Machine Learning studio, go to **Endpoints** > **Real-time endpoints**, select the `diabetes-endpoint`, and use the **Test** tab to send a sample request.
+1. When the workflow has finished, review the new comment on the pull request and note the generated endpoint name. Then, in Azure Machine Learning studio, go to **Endpoints** > **Real-time endpoints**, select that endpoint, and use the **Test** tab to send a sample request.
+1. In the **Test** tab, use a JSON payload that matches the eight model features. For example:
+
+	```json
+	{
+	  "input_data": {
+	    "columns": [
+	      "Pregnancies",
+	      "PlasmaGlucose",
+	      "DiastolicBloodPressure",
+	      "TricepsThickness",
+	      "SerumInsulin",
+	      "BMI",
+	      "DiabetesPedigree",
+	      "Age"
+	    ],
+	    "index": [0],
+	    "data": [
+	      [9, 104, 51, 7, 24, 27.36983156, 1.350472047, 43]
+	    ]
+	  }
+	}
+	```
+
+	You can also reuse the sample payload in `sample-request.json` from the repo root for CLI-based invocation.
 
 Your production endpoint now serves a model that was trained and reviewed through a PR-based workflow, with dev and prod metrics visible in the pull request and a scripted deployment you can repeat and extend.
 
@@ -204,15 +229,16 @@ Your production endpoint now serves a model that was trained and reviewed throug
 
 To monitor for drift and quality issues, Azure Machine Learning needs access to production inference data from your endpoint.
 
-1. In Azure Machine Learning studio, on your real-time endpoint, open the **Settings** or **Data collection** section.
-1. Enable **Model data collection** for the endpoint so that inputs and outputs are stored in a workspace datastore.
-1. Save the changes.
+1. In Azure Machine Learning studio, go to **Endpoints** > **Real-time endpoints** and open the endpoint that you deployed from the workflow.
+1. Open the **Deployments** tab and select the `blue` deployment.
+1. Confirm that model data collection is already enabled for the deployment. With the current `src/deploy_to_online_endpoint.py` script, the deployment is created with `model_inputs` and `model_outputs` collection enabled, so you may not see a separate **Settings** or **Data collection** tab on the endpoint itself.
+1. Use the **Test** tab to send at least one successful inference request to the endpoint. This generates the production input and output records that model monitoring needs.
 1. In the left navigation, go to **Monitoring** (or **Model monitoring**, depending on your workspace view).
 1. Create a new monitor and associate it with your online endpoint.
 1. Configure the monitor with settings such as:
 	- **Monitoring signals**: enable **Data drift**.
-	- **Reference data**: use the training data asset (for example, `diabetes-dev-folder`).
-	- **Production data**: use the data collected from the online endpoint.
+	- **Reference data**: use the training data asset (for example, `diabetes-training` or `diabetes-dev-folder`).
+	- **Production data**: use the input data collected from the online endpoint deployment after your test request has succeeded.
 	- **Frequency**: set a reasonable schedule (for example, daily).
 1. Save and enable the monitor.
 
@@ -225,24 +251,24 @@ In a real system, drift or performance degradation would trigger retraining. In 
 1. Wait until your monitor has run at least once and review the drift metrics in Azure Machine Learning studio.
 1. In your local clone of the repo, create a new feature branch to represent your retraining work. For example:
 
-		```bash
-		git checkout -b feature/drift-retrain
-		```
+	```bash
+	git checkout -b feature/drift-retrain
+	```
 
 1. Open `src/train-model-parameters.py` and change the default regularization rate or another safe parameter (for example, adjust the default value of `--reg_rate`) to represent how you want to respond to drift.
 1. Commit the change and push the branch to GitHub:
 
-		```bash
-		git add src/train-model-parameters.py
-		git commit -m "Retrain in response to drift"
-		git push --set-upstream origin feature/drift-retrain
-		```
+	```bash
+	git add src/train-model-parameters.py
+	git commit -m "Retrain in response to drift"
+	git push --set-upstream origin feature/drift-retrain
+	```
 
 1. In GitHub, create a new pull request from your `feature/drift-retrain` branch into `main`.
 1. Observe that the **Train model in dev** workflow runs automatically for the new pull request because you added the `pull_request` trigger earlier. When it completes, review the comment that shows the updated **dev** Accuracy and AUC.
 1. If the dev metrics look acceptable, add a comment `/train-prod` on the pull request to trigger the **Train model in prod (PR comment)** workflow. When it completes, review the comment that shows the updated **prod** Accuracy and AUC.
 1. If the prod metrics also meet your expectations, add a comment `/deploy-prod` on the pull request to trigger the **Deploy model to online endpoint (PR comment)** workflow. Wait for it to complete.
-1. Finally, in Azure Machine Learning studio, go to **Endpoints** > **Real-time endpoints**, select the `diabetes-endpoint`, and use the **Test** tab to confirm that the endpoint still returns predictions after your retraining and deployment.
+1. Finally, in Azure Machine Learning studio, go to **Endpoints** > **Real-time endpoints**, select the endpoint name reported by the deployment workflow, and use the **Test** tab with the same JSON payload to confirm that the endpoint still returns predictions after your retraining and deployment.
 
 By repeating the same PR-based dev → prod → deploy workflow in response to simulated drift, you see how monitoring, retraining, and controlled promotion can work together in an end-to-end MLOps process.
 
@@ -277,4 +303,3 @@ When you finish exploring Azure Machine Learning, you should delete the resource
 1. Select the **rg-ai300-...** resource group that contains your Azure Machine Learning workspace and any associated resources.
 1. At the top of the **Overview** page for your resource group, select **Delete resource group**.
 1. Enter the resource group name to confirm you want to delete it, and select **Delete**.
-

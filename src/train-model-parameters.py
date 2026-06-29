@@ -1,7 +1,8 @@
-import mlflow
 import argparse
 import glob
+import json
 import os
+import mlflow
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -21,7 +22,11 @@ def main(args):
     model = train_model(args.reg_rate, X_train, X_test, y_train, y_test)
 
     # evaluate model
-    eval_model(model, X_test, y_test)
+    metrics = eval_model(model, X_test, y_test)
+
+    # persist metrics so the workflow can comment the actual values deterministically
+    if args.metrics_output:
+        save_metrics(metrics, args.metrics_output)
 
 def get_data(path):
     # function that reads the data from a file or a folder of CSV files
@@ -80,7 +85,20 @@ def eval_model(model, X_test, y_test):
     plt.ylabel('True Positive Rate')
     plt.title('ROC Curve')
     plt.savefig("ROC-Curve.png")
-    mlflow.log_artifact("ROC-Curve.png")    
+    mlflow.log_artifact("ROC-Curve.png")
+
+    return {
+        "accuracy": float(acc),
+        "auc": float(auc),
+    }
+
+def save_metrics(metrics, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+    metrics_path = os.path.join(output_dir, "metrics.json")
+    with open(metrics_path, "w", encoding="utf-8") as metrics_file:
+        json.dump(metrics, metrics_file)
+
+    print(f"Saved metrics to {metrics_path}")
 
 def parse_args():
     # setup arg parser
@@ -91,6 +109,8 @@ def parse_args():
                         type=str)
     parser.add_argument("--reg_rate", dest='reg_rate',
                         type=float, default=0.01)
+    parser.add_argument("--metrics_output", dest='metrics_output',
+                        type=str, default=None)
 
     # parse args
     args = parser.parse_args()
