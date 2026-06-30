@@ -74,7 +74,7 @@ To let GitHub Actions authenticate to Azure Machine Learning, you use a service 
 	```azurecli
 	az ad sp create-for-rbac --name "<service-principal-name>" --role contributor \
 			--scopes /subscriptions/<subscription-id>/resourceGroups/<your-resource-group-name> \
-			--sdk-auth
+		    --json-auth
 	```
 
 1. Copy the full JSON output of the command to a safe location. You use the values in the next steps and in later challenges.
@@ -112,6 +112,15 @@ Now that you understand the network options, you are ready to automate a trainin
 In this section, you connect your GitHub workflow to Azure Machine Learning and run a command job to train a model. The workflow uses the `AZURE_CREDENTIALS` secret you created earlier.
 
 1. Clone your `mslearn-mlops` repository that you created from the template to a development environment where you can edit files and push changes back to GitHub.
+
+	> [!NOTE]
+	> If Git prompts you for your identity when you commit from this machine, configure it once before continuing:
+	>
+	> ```powershell
+	> git config --global user.name "Your GitHub Username"
+	> git config --global user.email "your-email@example.com"
+	> ```
+
 1. In the cloned repository, open `src/job.yml` and replace the placeholder values for the `training_data` input so the command job uses the single file data asset created by the setup script:
 
 	```yml
@@ -133,6 +142,7 @@ In this section, you connect your GitHub workflow to Azure Machine Learning and 
 	```
 
 1. Save your changes, commit them to your local repository, and push the changes to the **main** branch of your fork.
+
 1. In GitHub, go to the **Actions** tab for your repository.
 1. Select the workflow defined in `manual-trigger-job.yml` and use **Run workflow** to start it manually.
 1. Wait for the workflow run to complete. Verify that the **Run Azure Machine Learning training job** step completes successfully.

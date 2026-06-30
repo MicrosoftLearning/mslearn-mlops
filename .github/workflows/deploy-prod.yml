@@ -7,6 +7,7 @@ on:
 permissions:
   contents: read
   issues: write
+  pull-requests: write
 
 jobs:
   deploy-prod:
@@ -19,6 +20,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{ github.event.issue.number }}/head
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -31,7 +34,7 @@ jobs:
           pip install azure-ai-ml azure-identity
 
       - name: Sign in to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
@@ -56,9 +59,14 @@ jobs:
 
           SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 
+          # unique, deterministic, region-safe name
+          SUFFIX="${WS_NAME#mlw-ai300-l}"
+          ENDPOINT_NAME="diabetes-endpoint-${SUFFIX:0:8}"
+
           echo "resource_group=$RG_NAME" >> "$GITHUB_OUTPUT"
           echo "workspace=$WS_NAME" >> "$GITHUB_OUTPUT"
           echo "subscription_id=$SUBSCRIPTION_ID" >> "$GITHUB_OUTPUT"
+          echo "endpoint_name=$ENDPOINT_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Deploy model to managed online endpoint
         id: deploy
@@ -67,7 +75,7 @@ jobs:
             --subscription-id "${{ steps.detect.outputs.subscription_id }}" \
             --resource-group "${{ steps.detect.outputs.resource_group }}" \
             --workspace "${{ steps.detect.outputs.workspace }}" \
-            --endpoint-name "diabetes-endpoint" \
+            --endpoint-name "${{ steps.detect.outputs.endpoint_name }}" \
             --deployment-name "blue"
 
       - name: Comment deployment result on pull request
@@ -79,6 +87,10 @@ jobs:
               '🚀 Deployment workflow completed.',
               '',
               'The diabetes model has been deployed (or updated) on the managed online endpoint.',
+              '',
+              'Endpoint name: `${{ steps.detect.outputs.endpoint_name }}`',
+              'Deployment name: `blue`',
+              'Data collection for model inputs and outputs is enabled on this deployment.',
               '',
               'Check the workflow run logs for the endpoint scoring URI and verify the endpoint in Azure Machine Learning studio.',
             ].join('\n');

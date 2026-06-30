@@ -4,11 +4,15 @@ command: >-
   python train-model-parameters.py
   --training_data ${{inputs.training_data}}
   --reg_rate ${{inputs.reg_rate}}
+  --metrics_output ${{outputs.metrics_output}}
 inputs:
   training_data:
     type: <uri_file_or_uri_folder>
     path: <azureml:data-asset-name@latest>
   reg_rate: 0.01
+outputs:
+  metrics_output:
+    type: uri_folder
 environment: azureml:AzureML-sklearn-1.0-ubuntu20.04-py38-cpu@latest
 compute: azureml:aml-cluster
 experiment_name: diabetes-training
