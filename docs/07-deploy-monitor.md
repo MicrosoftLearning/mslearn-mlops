@@ -124,6 +124,15 @@ GitHub can now authenticate to Azure for both dev and prod via environment-speci
 Now you use a GitHub Actions workflow in your template-based repository that trains your model against dev data whenever someone proposes a change to the training configuration.
 
 1. Clone your `mslearn-mlops` repository that you created from the template to a development machine where you can edit files and push changes.
+
+	> [!NOTE]
+	> If Git prompts you for your identity when you commit from this machine, configure it once before continuing:
+	>
+	> ```powershell
+	> git config --global user.name "Your GitHub Username"
+	> git config --global user.email "your-email@example.com"
+	> ```
+
 1. In your local clone, open `src/train-model-parameters.py` and review how it:
 	- Reads training data from a file or folder path.
 	- Trains a logistic regression model and logs metrics such as **Accuracy** and **AUC**.
