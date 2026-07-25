@@ -1,5 +1,8 @@
 #! /usr/bin/sh
 
+# Ensure relative paths below resolve regardless of the caller's working directory
+cd "$(dirname "$0")"
+
 # Create random string
 guid=$(cat /proc/sys/kernel/random/uuid)
 suffix=${guid//[-]/}
