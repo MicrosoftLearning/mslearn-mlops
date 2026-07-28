@@ -56,7 +56,7 @@ jobs:
             --set inputs.training_data.path=azureml:diabetes-dev-folder@latest \
             --stream | tee training_output.log
 
-      - name: Extract dev metrics from logs
+      - name: Extract dev metrics from logs # Test
         id: parse-metrics
         run: |
           if [ ! -f training_output.log ]; then
