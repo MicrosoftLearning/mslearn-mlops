@@ -17,8 +17,3 @@ markdown: kramdown
 kramdown:
    syntax_highlighter_opts:
       disable : true
-defaults:
-  - scope:
-      path: "docs/06-automate-model-training.md"
-    values:
-      render_with_liquid: false
