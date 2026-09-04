@@ -136,10 +136,12 @@ In this section, you connect your GitHub workflow to Azure Machine Learning and 
 		- Use the `AZURE_CREDENTIALS` secret to sign in to Azure via `azure/login@v2`.
 1. At the end of the workflow, add a new step that submits the Azure Machine Learning job defined in `src/job.yml`. The command requires explicit `--resource-group` and `--workspace-name` flags, supplied from the GitHub Actions variables you created:
 
+	{% raw %}
 	```yml
 	- name: Run Azure Machine Learning training job
 		run: az ml job create -f src/job.yml --stream --resource-group ${{vars.AZURE_RESOURCE_GROUP}} --workspace-name ${{vars.AZURE_WORKSPACE_NAME}}
 	```
+	{% endraw %}
 
 1. Save your changes, commit them to your local repository, and push the changes to the **main** branch of your fork.
 
