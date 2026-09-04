@@ -69,6 +69,21 @@ First, you create or reuse an Azure Machine Learning workspace and the data asse
 	> Ignore any messages that say that extensions couldn't be installed.
 
 1. Wait for the script to finish. It creates a resource group, an Azure Machine Learning workspace, compute resources, and the data assets you need for this lab.
+
+1. Register the extra resource providers that managed online endpoints require, so registration finishes before you reach the deployment step later in this lab:
+
+	```azurecli
+	az provider register --namespace Microsoft.PolicyInsights
+	az provider register --namespace Microsoft.Cdn
+	```
+
+	To check whether a provider is already registered, run:
+
+	```azurecli
+	az provider show --namespace Microsoft.PolicyInsights --query registrationState -o tsv
+	```
+
+	A result of `Registered` means no action is needed.
 1. In the Azure portal, go to **Resource groups** and open the `rg-ai300-...` resource group that was created.
 1. Select the Azure Machine Learning workspace (for example, `mlw-ai300-...`) and then select **Launch studio** to open Azure Machine Learning studio.
 1. In the studio, select **Data** and verify that you have the following data assets:
