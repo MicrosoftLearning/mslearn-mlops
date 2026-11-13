@@ -7,9 +7,9 @@ command: >-
   --metrics_output ${{outputs.metrics_output}}
 inputs:
   training_data:
-    type: <uri_file_or_uri_folder>
-    path: <azureml:data-asset-name@latest>
-  reg_rate: 0.01
+    type: uri_file
+    path: azureml:diabetes-data@latest
+  reg_rate: 0.02
 outputs:
   metrics_output:
     type: uri_folder
